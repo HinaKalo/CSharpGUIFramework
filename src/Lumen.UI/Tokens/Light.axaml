@@ -62,6 +62,12 @@
   <SolidColorBrush x:Key="Lumen.Brush.TrackHover" Color="#D4D4D8" />
   <SolidColorBrush x:Key="Lumen.Brush.SwitchOff" Color="#D4D4D8" />
   <SolidColorBrush x:Key="Lumen.Brush.SwitchOffHover" Color="#C4C4CC" />
+  <SolidColorBrush x:Key="Lumen.Brush.SegmentTrack" Color="#F0F0F2" />
+  <SolidColorBrush x:Key="Lumen.Brush.SegmentSelected" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.SuccessBorder" Color="#BBF7D0" />
+  <SolidColorBrush x:Key="Lumen.Brush.WarningBorder" Color="#FDE68A" />
+  <SolidColorBrush x:Key="Lumen.Brush.DangerBorder" Color="#FECACA" />
+  <SolidColorBrush x:Key="Lumen.Brush.InfoBorder" Color="#BAE6FD" />
   <SolidColorBrush x:Key="Lumen.Brush.Skeleton" Color="#ECECEF" />
   <SolidColorBrush x:Key="Lumen.Brush.SkeletonHighlight" Color="#F7F7F9" />
   <SolidColorBrush x:Key="Lumen.Brush.Knob" Color="#FFFFFF" />

@@ -1,0 +1,491 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="using:Lumen.UI.Controls">
+
+  <!-- Icon ======================================================== -->
+  <ControlTheme x:Key="{x:Type c:Icon}" TargetType="c:Icon">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+  </ControlTheme>
+
+  <!-- Card ======================================================== -->
+  <ControlTheme x:Key="{x:Type c:Card}" TargetType="c:Card">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Lg}" />
+    <Setter Property="Padding" Value="{DynamicResource Lumen.Padding.Card}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.18" />
+        <BrushTransition Property="BorderBrush" Duration="0:0:0.18" />
+      </Transitions>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Root"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                BoxShadow="{DynamicResource Lumen.Shadow.Sm}">
+          <DockPanel>
+            <Grid Name="PART_Header"
+                  DockPanel.Dock="Top"
+                  ColumnDefinitions="*,Auto"
+                  Margin="20,18,20,0"
+                  IsVisible="False">
+              <StackPanel Spacing="3" VerticalAlignment="Center">
+                <ContentPresenter Content="{TemplateBinding Header}"
+                                  FontSize="{DynamicResource Lumen.FontSize.Subtitle}"
+                                  FontWeight="SemiBold"
+                                  Foreground="{DynamicResource Lumen.Brush.TextPrimary}"
+                                  IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                <TextBlock Text="{TemplateBinding Description}"
+                           TextWrapping="Wrap"
+                           FontSize="{DynamicResource Lumen.FontSize.Body}"
+                           Foreground="{DynamicResource Lumen.Brush.TextSecondary}"
+                           IsVisible="{TemplateBinding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+              </StackPanel>
+              <ContentPresenter Grid.Column="1"
+                                Margin="12,0,0,0"
+                                VerticalAlignment="Top"
+                                Content="{TemplateBinding Actions}" />
+            </Grid>
+            <Border Name="PART_Footer"
+                    DockPanel.Dock="Bottom"
+                    BorderBrush="{DynamicResource Lumen.Brush.BorderSubtle}"
+                    BorderThickness="0,1,0,0"
+                    Padding="20,12"
+                    IsVisible="False">
+              <ContentPresenter Content="{TemplateBinding Footer}" />
+            </Border>
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Padding="{TemplateBinding Padding}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:has-header /template/ Grid#PART_Header">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:has-header /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Margin" Value="0,-4,0,0" />
+    </Style>
+    <Style Selector="^:has-footer /template/ Border#PART_Footer">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^.interactive">
+      <Setter Property="Cursor" Value="Hand" />
+      <Style Selector="^:pointerover">
+        <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.BorderStrong}" />
+        <Setter Property="RenderTransform" Value="translateY(-2px)" />
+        <Style Selector="^ /template/ Border#PART_Root">
+          <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.Md}" />
+        </Style>
+      </Style>
+    </Style>
+    <Style Selector="^.flat /template/ Border#PART_Root">
+      <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+    </Style>
+    <Style Selector="^.subtle">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceSubtle}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Style Selector="^ /template/ Border#PART_Root">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+    </Style>
+    <Style Selector="^.compact">
+      <Setter Property="Padding" Value="14" />
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Badge ======================================================= -->
+  <ControlTheme x:Key="{x:Type c:Badge}" TargetType="c:Badge">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Full}" />
+    <Setter Property="Padding" Value="8,1,8,2" />
+    <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Caption}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <StackPanel Orientation="Horizontal" Spacing="6">
+            <Ellipse Name="PART_Dot"
+                     Width="6" Height="6"
+                     VerticalAlignment="Center"
+                     Fill="{TemplateBinding Foreground}"
+                     IsVisible="False" />
+            <ContentPresenter Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Foreground="{TemplateBinding Foreground}"
+                              VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^.dot /template/ Ellipse#PART_Dot">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^.lg">
+      <Setter Property="Padding" Value="10,3,10,4" />
+      <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+    </Style>
+    <Style Selector="^.square">
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Xs}" />
+    </Style>
+
+    <Style Selector="^.accent">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+    </Style>
+    <Style Selector="^.success">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SuccessSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.SuccessText}" />
+    </Style>
+    <Style Selector="^.warning">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.WarningSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.WarningText}" />
+    </Style>
+    <Style Selector="^.danger">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.DangerText}" />
+    </Style>
+    <Style Selector="^.info">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.InfoSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.InfoText}" />
+    </Style>
+
+    <Style Selector="^.solid">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextInverse}" />
+      <Style Selector="^.accent">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Accent}" />
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextOnAccent}" />
+      </Style>
+      <Style Selector="^.success">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Success}" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+      </Style>
+      <Style Selector="^.warning">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Warning}" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+      </Style>
+      <Style Selector="^.danger">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Danger}" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+      </Style>
+      <Style Selector="^.info">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Info}" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+      </Style>
+    </Style>
+
+    <Style Selector="^.outline">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.BorderStrong}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Avatar ====================================================== -->
+  <ControlTheme x:Key="{x:Type c:Avatar}" TargetType="c:Avatar">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Full}" />
+    <Setter Property="Foreground" Value="#FFFFFF" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Width="{TemplateBinding Size}" Height="{TemplateBinding Size}">
+          <Border Name="PART_Fill"
+                  Background="{TemplateBinding Fill}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  BorderBrush="{DynamicResource Lumen.Brush.Surface}"
+                  BorderThickness="0">
+            <TextBlock Name="PART_Initials"
+                       Text="{TemplateBinding Initials}"
+                       FontSize="{TemplateBinding InitialsFontSize}"
+                       FontWeight="SemiBold"
+                       Foreground="{TemplateBinding Foreground}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+          </Border>
+          <Ellipse Name="PART_Status"
+                   Width="10" Height="10"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Stroke="{DynamicResource Lumen.Brush.Surface}"
+                   StrokeThickness="2"
+                   IsVisible="False" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:image /template/ TextBlock#PART_Initials">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^.square">
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    </Style>
+    <!-- ring: surface-colored outline, for overlapping avatar groups -->
+    <Style Selector="^.ring /template/ Border#PART_Fill">
+      <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    <Style Selector="^:has-status /template/ Ellipse#PART_Status">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:online /template/ Ellipse#PART_Status">
+      <Setter Property="Fill" Value="{DynamicResource Lumen.Brush.Success}" />
+    </Style>
+    <Style Selector="^:away /template/ Ellipse#PART_Status">
+      <Setter Property="Fill" Value="{DynamicResource Lumen.Brush.Warning}" />
+    </Style>
+    <Style Selector="^:busy /template/ Ellipse#PART_Status">
+      <Setter Property="Fill" Value="{DynamicResource Lumen.Brush.Danger}" />
+    </Style>
+    <Style Selector="^:offline /template/ Ellipse#PART_Status">
+      <Setter Property="Fill" Value="{DynamicResource Lumen.Brush.TextTertiary}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- SectionHeader =============================================== -->
+  <ControlTheme x:Key="{x:Type c:SectionHeader}" TargetType="c:SectionHeader">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="*,Auto">
+          <StackPanel Spacing="4" VerticalAlignment="Center">
+            <TextBlock Text="{TemplateBinding Title}"
+                       FontSize="{DynamicResource Lumen.FontSize.Title}"
+                       FontWeight="SemiBold"
+                       LetterSpacing="-0.2"
+                       Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+            <TextBlock Text="{TemplateBinding Description}"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource Lumen.Brush.TextSecondary}"
+                       IsVisible="{TemplateBinding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+          </StackPanel>
+          <ContentPresenter Grid.Column="1"
+                            Margin="16,0,0,0"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Actions}" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^.lg /template/ TextBlock">
+      <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- EmptyState ================================================== -->
+  <ControlTheme x:Key="{x:Type c:EmptyState}" TargetType="c:EmptyState">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Padding" Value="24,32" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel Margin="{TemplateBinding Padding}" Spacing="6" MaxWidth="380" HorizontalAlignment="Center">
+          <Border Width="52" Height="52"
+                  Margin="0,0,0,10"
+                  HorizontalAlignment="Center"
+                  CornerRadius="{DynamicResource Lumen.Radius.Lg}"
+                  Background="{DynamicResource Lumen.Brush.SurfaceSubtle}"
+                  BorderBrush="{DynamicResource Lumen.Brush.Border}"
+                  BorderThickness="1">
+            <c:Icon Kind="{TemplateBinding Icon}" Size="22" Foreground="{DynamicResource Lumen.Brush.TextSecondary}" />
+          </Border>
+          <TextBlock Text="{TemplateBinding Title}"
+                     HorizontalAlignment="Center"
+                     TextAlignment="Center"
+                     FontSize="{DynamicResource Lumen.FontSize.Subtitle}"
+                     FontWeight="SemiBold"
+                     Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+          <TextBlock Text="{TemplateBinding Description}"
+                     HorizontalAlignment="Center"
+                     TextAlignment="Center"
+                     TextWrapping="Wrap"
+                     Foreground="{DynamicResource Lumen.Brush.TextSecondary}"
+                     IsVisible="{TemplateBinding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+          <ContentPresenter Margin="0,12,0,0"
+                            HorizontalAlignment="Center"
+                            Content="{TemplateBinding Action}"
+                            IsVisible="{TemplateBinding Action, Converter={x:Static ObjectConverters.IsNotNull}}" />
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- Skeleton ==================================================== -->
+  <ControlTheme x:Key="{x:Type c:Skeleton}" TargetType="c:Skeleton">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Skeleton}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+    <Setter Property="MinHeight" Value="12" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^.text">
+      <Setter Property="Height" Value="12" />
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Xs}" />
+    </Style>
+    <Style Selector="^.circle">
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Full}" />
+    </Style>
+    <Style Selector="^">
+      <Style.Animations>
+        <Animation Duration="0:0:1.1" IterationCount="Infinite" PlaybackDirection="Alternate" Easing="SineEaseInOut">
+          <KeyFrame Cue="0%">
+            <Setter Property="Opacity" Value="1" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="Opacity" Value="0.45" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </ControlTheme>
+
+  <!-- Spinner ===================================================== -->
+  <ControlTheme x:Key="{x:Type c:Spinner}" TargetType="c:Spinner">
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Accent}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Width="{TemplateBinding Size}" Height="{TemplateBinding Size}">
+          <Ellipse Stroke="{TemplateBinding Foreground}"
+                   StrokeThickness="{TemplateBinding Thickness}"
+                   Opacity="0.18" />
+          <Arc Name="PART_Arc"
+               Stroke="{TemplateBinding Foreground}"
+               StrokeThickness="{TemplateBinding Thickness}"
+               StrokeLineCap="Round"
+               StartAngle="0"
+               SweepAngle="100">
+            <Arc.RenderTransform>
+              <RotateTransform />
+            </Arc.RenderTransform>
+          </Arc>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^ /template/ Arc#PART_Arc">
+      <Style.Animations>
+        <Animation Duration="0:0:0.8" IterationCount="Infinite">
+          <KeyFrame Cue="0%">
+            <Setter Property="RotateTransform.Angle" Value="0" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="RotateTransform.Angle" Value="360" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </ControlTheme>
+
+  <!-- StatCard ==================================================== -->
+  <ControlTheme x:Key="{x:Type c:StatCard}" TargetType="c:StatCard">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Surface}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Border}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Lg}" />
+    <Setter Property="Padding" Value="20" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}"
+                BoxShadow="{DynamicResource Lumen.Shadow.Sm}">
+          <StackPanel Spacing="10">
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Text="{TemplateBinding Label}"
+                         VerticalAlignment="Center"
+                         FontWeight="Medium"
+                         Foreground="{DynamicResource Lumen.Brush.TextSecondary}" />
+              <Border Name="PART_IconBox"
+                      Grid.Column="1"
+                      Width="32" Height="32"
+                      CornerRadius="{DynamicResource Lumen.Radius.Md}"
+                      Background="{DynamicResource Lumen.Brush.AccentSubtle}"
+                      IsVisible="False">
+                <c:Icon Kind="{TemplateBinding Icon}" Size="16" Foreground="{DynamicResource Lumen.Brush.AccentText}" />
+              </Border>
+            </Grid>
+            <TextBlock Text="{TemplateBinding Value}"
+                       FontSize="{DynamicResource Lumen.FontSize.Headline}"
+                       FontWeight="SemiBold"
+                       LetterSpacing="-0.6"
+                       Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Border Name="PART_Delta"
+                      CornerRadius="{DynamicResource Lumen.Radius.Full}"
+                      Padding="6,1,8,2"
+                      Background="{DynamicResource Lumen.Brush.SurfaceHover}"
+                      IsVisible="{TemplateBinding Delta, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                  <c:Icon Name="PART_TrendIcon" Kind="{TemplateBinding TrendIcon}" Size="12"
+                          Foreground="{DynamicResource Lumen.Brush.TextSecondary}" />
+                  <TextBlock Name="PART_DeltaText"
+                             Text="{TemplateBinding Delta}"
+                             FontSize="{DynamicResource Lumen.FontSize.Caption}"
+                             FontWeight="SemiBold"
+                             Foreground="{DynamicResource Lumen.Brush.TextSecondary}" />
+                </StackPanel>
+              </Border>
+              <TextBlock Text="{TemplateBinding Caption}"
+                         VerticalAlignment="Center"
+                         FontSize="{DynamicResource Lumen.FontSize.Caption}"
+                         Foreground="{DynamicResource Lumen.Brush.TextTertiary}" />
+            </StackPanel>
+          </StackPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:has-icon /template/ Border#PART_IconBox">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:up">
+      <Style Selector="^ /template/ Border#PART_Delta">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SuccessSubtle}" />
+      </Style>
+      <Style Selector="^ /template/ TextBlock#PART_DeltaText">
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.SuccessText}" />
+      </Style>
+      <Style Selector="^ /template/ c|Icon#PART_TrendIcon">
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.SuccessText}" />
+      </Style>
+    </Style>
+    <Style Selector="^:down">
+      <Style Selector="^ /template/ Border#PART_Delta">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerSubtle}" />
+      </Style>
+      <Style Selector="^ /template/ TextBlock#PART_DeltaText">
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.DangerText}" />
+      </Style>
+      <Style Selector="^ /template/ c|Icon#PART_TrendIcon">
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.DangerText}" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

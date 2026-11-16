@@ -7,6 +7,10 @@
       <ResourceDictionary.MergedDictionaries>
         <ResourceInclude Source="avares://Lumen.UI/Tokens/Foundation.axaml" />
         <ResourceInclude Source="avares://Lumen.UI/Themes/Button.axaml" />
+        <ResourceInclude Source="avares://Lumen.UI/Themes/Display.axaml" />
+        <ResourceInclude Source="avares://Lumen.UI/Themes/Inputs.axaml" />
+        <ResourceInclude Source="avares://Lumen.UI/Themes/Feedback.axaml" />
+        <ResourceInclude Source="avares://Lumen.UI/Themes/Shell.axaml" />
       </ResourceDictionary.MergedDictionaries>
       <ResourceDictionary.ThemeDictionaries>
         <ResourceInclude x:Key="Light" Source="avares://Lumen.UI/Tokens/Light.axaml" />

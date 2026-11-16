@@ -1,0 +1,233 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="using:Lumen.UI.Controls">
+
+  <!-- Nav list item =============================================== -->
+  <ControlTheme x:Key="Lumen.NavListItem" TargetType="ListBoxItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+    <Setter Property="Padding" Value="10,8" />
+    <Setter Property="Margin" Value="0,1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <Border.Transitions>
+            <Transitions>
+              <BrushTransition Property="Background" Duration="0:0:0.12" />
+            </Transitions>
+          </Border.Transitions>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Foreground="{TemplateBinding Foreground}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="Center" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+    </Style>
+    <Style Selector="^:pressed">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfacePressed}" />
+    </Style>
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+    </Style>
+    <Style Selector="^.compact">
+      <Setter Property="Padding" Value="15,8" />
+    </Style>
+    <Style Selector="^.header">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Padding" Value="10,16,10,6" />
+      <Setter Property="Cursor" Value="Arrow" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Nav list ==================================================== -->
+  <ControlTheme x:Key="{x:Type c:NavList}" TargetType="c:NavList">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Padding" Value="10,4" />
+    <Setter Property="ItemContainerTheme" Value="{StaticResource Lumen.NavListItem}" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ItemTemplate">
+      <DataTemplate x:DataType="c:NavItem">
+        <Panel>
+          <Panel IsVisible="{Binding !$parent[c:NavList].IsCompact}">
+            <TextBlock Text="{Binding Title}"
+                       IsVisible="{Binding IsHeader}"
+                       FontSize="11"
+                       FontWeight="SemiBold"
+                       LetterSpacing="0.6"
+                       Foreground="{DynamicResource Lumen.Brush.TextTertiary}" />
+          </Panel>
+          <Grid ColumnDefinitions="Auto,*,Auto" IsVisible="{Binding !IsHeader}">
+            <c:Icon Kind="{Binding Icon}" Size="18" />
+            <Panel Grid.Column="1" IsVisible="{Binding !$parent[c:NavList].IsCompact}">
+              <TextBlock Margin="12,0,0,0"
+                         VerticalAlignment="Center"
+                         TextTrimming="CharacterEllipsis"
+                         Text="{Binding Title}" />
+            </Panel>
+            <Panel Grid.Column="2" IsVisible="{Binding !$parent[c:NavList].IsCompact}">
+              <c:Badge Classes="accent"
+                       Margin="8,0,0,0"
+                       Padding="7,0,7,1"
+                       Content="{Binding Badge}"
+                       IsVisible="{Binding HasBadge}" />
+            </Panel>
+          </Grid>
+        </Panel>
+      </DataTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ScrollViewer Name="PART_ScrollViewer"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          Margin="{TemplateBinding Padding}"
+                          ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </ScrollViewer>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- AppShell ==================================================== -->
+  <ControlTheme x:Key="{x:Type c:AppShell}" TargetType="c:AppShell">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Background}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+    <Setter Property="Logo">
+      <Template>
+        <c:Icon Kind="Zap" Size="16" StrokeThickness="2.25" />
+      </Template>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <c:DialogHost Name="PART_DialogHost">
+          <Panel>
+            <Grid ColumnDefinitions="Auto,*" Background="{TemplateBinding Background}">
+
+              <!-- Sidebar -->
+              <Border Name="PART_Pane"
+                      Width="{TemplateBinding PaneWidth}"
+                      Background="{DynamicResource Lumen.Brush.Sidebar}"
+                      BorderBrush="{DynamicResource Lumen.Brush.Border}"
+                      BorderThickness="0,0,1,0"
+                      ClipToBounds="True">
+                <Border.Transitions>
+                  <Transitions>
+                    <DoubleTransition Property="Width" Duration="0:0:0.2" Easing="CubicEaseOut" />
+                  </Transitions>
+                </Border.Transitions>
+                <DockPanel>
+                  <Grid Name="PART_PaneHeader"
+                        DockPanel.Dock="Top"
+                        Height="60"
+                        Margin="18,0,12,0"
+                        ColumnDefinitions="Auto,*">
+                    <Border Width="30" Height="30"
+                            VerticalAlignment="Center"
+                            CornerRadius="{DynamicResource Lumen.Radius.Md}"
+                            Background="{DynamicResource Lumen.Brush.Accent}">
+                      <ContentPresenter Content="{TemplateBinding Logo}"
+                                        Foreground="{DynamicResource Lumen.Brush.TextOnAccent}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel Name="PART_TitleBlock"
+                                Grid.Column="1"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                Spacing="0">
+                      <TextBlock Text="{TemplateBinding Title}"
+                                 FontSize="15"
+                                 FontWeight="SemiBold"
+                                 TextTrimming="CharacterEllipsis"
+                                 Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+                      <TextBlock Text="{TemplateBinding Subtitle}"
+                                 FontSize="{DynamicResource Lumen.FontSize.Caption}"
+                                 TextTrimming="CharacterEllipsis"
+                                 Foreground="{DynamicResource Lumen.Brush.TextTertiary}"
+                                 IsVisible="{TemplateBinding Subtitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                    </StackPanel>
+                  </Grid>
+                  <ContentPresenter Name="PART_PaneFooter"
+                                    DockPanel.Dock="Bottom"
+                                    Margin="12"
+                                    Content="{TemplateBinding PaneFooter}" />
+                  <c:NavList Name="PART_NavList"
+                             ItemsSource="{TemplateBinding NavItems}"
+                             SelectedItem="{TemplateBinding SelectedNavItem, Mode=TwoWay}" />
+                </DockPanel>
+              </Border>
+
+              <!-- Main -->
+              <Grid Grid.Column="1" RowDefinitions="Auto,*">
+                <Border Name="PART_TopBar"
+                        Height="60"
+                        Padding="14,0,20,0"
+                        BorderBrush="{DynamicResource Lumen.Brush.Border}"
+                        BorderThickness="0,0,0,1">
+                  <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Button Name="PART_PaneToggle"
+                            Classes="ghost icon"
+                            VerticalAlignment="Center"
+                            ToolTip.Tip="Toggle sidebar">
+                      <c:Icon Kind="PanelLeft" Size="18" />
+                    </Button>
+                    <TextBlock Grid.Column="1"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="{DynamicResource Lumen.FontSize.Subtitle}"
+                               FontWeight="SemiBold"
+                               Text="{TemplateBinding PageTitle}"
+                               IsVisible="{TemplateBinding ShowPageHeader}" />
+                    <ContentPresenter Grid.Column="2"
+                                      VerticalAlignment="Center"
+                                      Content="{TemplateBinding HeaderActions}" />
+                  </Grid>
+                </Border>
+                <TransitioningContentControl Name="PART_Page"
+                                             Grid.Row="1"
+                                             Content="{TemplateBinding CurrentPage}"
+                                             ContentTemplate="{TemplateBinding ContentTemplate}">
+                  <TransitioningContentControl.PageTransition>
+                    <CrossFade Duration="0:0:0.15" />
+                  </TransitioningContentControl.PageTransition>
+                </TransitioningContentControl>
+              </Grid>
+            </Grid>
+            <c:ToastHost Name="PART_ToastHost" />
+          </Panel>
+        </c:DialogHost>
+      </ControlTemplate>
+    </Setter>
+
+    <!-- collapsed pane -->
+    <Style Selector="^:collapsed">
+      <Style Selector="^ /template/ Border#PART_Pane">
+        <Setter Property="Width" Value="69" />
+      </Style>
+      <Style Selector="^ /template/ StackPanel#PART_TitleBlock">
+        <Setter Property="IsVisible" Value="False" />
+      </Style>
+      <Style Selector="^ /template/ ContentPresenter#PART_PaneFooter">
+        <Setter Property="IsVisible" Value="False" />
+      </Style>
+      <Style Selector="^ /template/ c|NavList#PART_NavList">
+        <Setter Property="IsCompact" Value="True" />
+      </Style>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

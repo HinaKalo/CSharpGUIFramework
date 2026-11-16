@@ -1,0 +1,132 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="using:Lumen.UI.Controls">
+
+  <!-- FormField =================================================== -->
+  <ControlTheme x:Key="{x:Type c:FormField}" TargetType="c:FormField">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel Spacing="6">
+          <StackPanel Orientation="Horizontal" Spacing="3"
+                      IsVisible="{TemplateBinding Label, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+            <TextBlock Text="{TemplateBinding Label}"
+                       FontSize="13"
+                       FontWeight="Medium"
+                       Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+            <TextBlock Name="PART_Required"
+                       Text="*"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource Lumen.Brush.Danger}"
+                       IsVisible="False" />
+          </StackPanel>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+          <TextBlock Name="PART_Hint"
+                     Text="{TemplateBinding Hint}"
+                     TextWrapping="Wrap"
+                     FontSize="{DynamicResource Lumen.FontSize.Caption}"
+                     Foreground="{DynamicResource Lumen.Brush.TextTertiary}"
+                     IsVisible="False" />
+          <TextBlock Name="PART_Error"
+                     Text="{TemplateBinding Error}"
+                     TextWrapping="Wrap"
+                     FontSize="{DynamicResource Lumen.FontSize.Caption}"
+                     FontWeight="Medium"
+                     Foreground="{DynamicResource Lumen.Brush.DangerText}"
+                     IsVisible="False" />
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:required /template/ TextBlock#PART_Required">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:has-hint /template/ TextBlock#PART_Hint">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:error /template/ TextBlock#PART_Error">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+
+  <!-- SegmentedControl ============================================ -->
+  <ControlTheme x:Key="{x:Type c:SegmentedItem}" TargetType="c:SegmentedItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+    <Setter Property="Padding" Value="14,5,14,6" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                BoxShadow="{DynamicResource Lumen.Shadow.None}">
+          <Border.Transitions>
+            <Transitions>
+              <BrushTransition Property="Background" Duration="0:0:0.15" />
+            </Transitions>
+          </Border.Transitions>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover">
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+    </Style>
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SegmentSelected}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.Sm}" />
+      </Style>
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.5" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type c:SegmentedControl}" TargetType="c:SegmentedControl">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SegmentTrack}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="Padding" Value="3" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="SelectionMode" Value="AlwaysSelected" />
+    <Setter Property="AutoScrollToSelectedItem" Value="False" />
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" Spacing="2" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^.block">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate>
+          <UniformGrid Rows="1" />
+        </ItemsPanelTemplate>
+      </Setter>
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

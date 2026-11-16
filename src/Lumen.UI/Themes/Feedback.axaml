@@ -1,0 +1,218 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="using:Lumen.UI.Controls">
+
+  <!-- InfoBar ===================================================== -->
+  <ControlTheme x:Key="{x:Type c:InfoBar}" TargetType="c:InfoBar">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.InfoSubtle}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.InfoBorder}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Info}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="Padding" Value="14,12" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}">
+          <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+            <c:Icon Kind="{TemplateBinding Icon}"
+                    Size="18"
+                    Margin="0,1,12,0"
+                    VerticalAlignment="Top"
+                    Foreground="{TemplateBinding Foreground}" />
+            <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+              <TextBlock Text="{TemplateBinding Title}"
+                         FontWeight="SemiBold"
+                         TextWrapping="Wrap"
+                         Foreground="{DynamicResource Lumen.Brush.TextPrimary}"
+                         IsVisible="{TemplateBinding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+              <TextBlock Text="{TemplateBinding Message}"
+                         TextWrapping="Wrap"
+                         Foreground="{DynamicResource Lumen.Brush.TextSecondary}"
+                         IsVisible="{TemplateBinding Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+            <ContentPresenter Grid.Column="2"
+                              Margin="12,0,0,0"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Actions}" />
+            <Button Name="PART_CloseButton"
+                    Grid.Column="3"
+                    Classes="ghost icon sm"
+                    Margin="8,-4,-6,-4"
+                    VerticalAlignment="Top"
+                    IsVisible="{TemplateBinding IsClosable}">
+              <c:Icon Kind="X" Size="14" />
+            </Button>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:success">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SuccessSubtle}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.SuccessBorder}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Success}" />
+    </Style>
+    <Style Selector="^:warning">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.WarningSubtle}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.WarningBorder}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Warning}" />
+    </Style>
+    <Style Selector="^:danger">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerSubtle}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.DangerBorder}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Danger}" />
+    </Style>
+    <Style Selector="^:neutral">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceSubtle}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Border}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+    </Style>
+  </ControlTheme>
+
+  <!-- Toast ======================================================= -->
+  <ControlTheme x:Key="{x:Type c:ToastCard}" TargetType="c:ToastCard">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceElevated}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Border}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Info}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Lg}" />
+    <Setter Property="Padding" Value="14,12" />
+    <Setter Property="Width" Value="340" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" Easing="CubicEaseIn" />
+      </Transitions>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                Padding="{TemplateBinding Padding}"
+                BoxShadow="{DynamicResource Lumen.Shadow.Lg}">
+          <Grid ColumnDefinitions="Auto,*,Auto">
+            <c:Icon Kind="{TemplateBinding Icon}"
+                    Size="18"
+                    Margin="0,1,12,0"
+                    VerticalAlignment="Top"
+                    Foreground="{TemplateBinding Foreground}" />
+            <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+              <TextBlock Text="{TemplateBinding Title}"
+                         FontWeight="SemiBold"
+                         TextWrapping="Wrap"
+                         Foreground="{DynamicResource Lumen.Brush.TextPrimary}" />
+              <TextBlock Text="{TemplateBinding Message}"
+                         TextWrapping="Wrap"
+                         FontSize="13"
+                         Foreground="{DynamicResource Lumen.Brush.TextSecondary}"
+                         IsVisible="{TemplateBinding Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+            <Button Name="PART_CloseButton"
+                    Grid.Column="2"
+                    Classes="ghost icon sm"
+                    Margin="8,-4,-6,-4"
+                    VerticalAlignment="Top">
+              <c:Icon Kind="X" Size="14" />
+            </Button>
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:success">
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Success}" />
+    </Style>
+    <Style Selector="^:warning">
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Warning}" />
+    </Style>
+    <Style Selector="^:danger">
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Danger}" />
+    </Style>
+    <Style Selector="^:neutral">
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+    </Style>
+    <Style Selector="^.entering">
+      <Setter Property="Opacity" Value="0" />
+      <Setter Property="RenderTransform" Value="translateY(12px)" />
+    </Style>
+    <Style Selector="^.leaving">
+      <Setter Property="Opacity" Value="0" />
+      <Setter Property="RenderTransform" Value="translateX(24px)" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type c:ToastHost}" TargetType="c:ToastHost">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="Margin" Value="20" />
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Spacing="10" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- DialogHost ================================================== -->
+  <ControlTheme x:Key="{x:Type c:DialogHost}" TargetType="c:DialogHost">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          <Border Name="PART_Overlay"
+                  Background="{DynamicResource Lumen.Brush.Overlay}"
+                  IsVisible="False"
+                  Opacity="0">
+            <Border.Transitions>
+              <Transitions>
+                <DoubleTransition Property="Opacity" Duration="0:0:0.16" />
+              </Transitions>
+            </Border.Transitions>
+            <Border Name="PART_Dialog"
+                    Margin="24"
+                    Padding="24"
+                    MaxWidth="{TemplateBinding DialogMaxWidth}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{DynamicResource Lumen.Brush.SurfaceElevated}"
+                    BorderBrush="{DynamicResource Lumen.Brush.Border}"
+                    BorderThickness="1"
+                    CornerRadius="{DynamicResource Lumen.Radius.Xl}"
+                    BoxShadow="{DynamicResource Lumen.Shadow.Lg}"
+                    RenderTransform="scale(0.96)">
+              <Border.Transitions>
+                <Transitions>
+                  <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.18" Easing="CubicEaseOut" />
+                </Transitions>
+              </Border.Transitions>
+              <ContentPresenter Name="PART_DialogPresenter" Content="{TemplateBinding DialogContent}" />
+            </Border>
+          </Border>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:open /template/ Border#PART_Overlay">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="Opacity" Value="1" />
+    </Style>
+    <Style Selector="^:open /template/ Border#PART_Dialog">
+      <Setter Property="RenderTransform" Value="scale(1)" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>
