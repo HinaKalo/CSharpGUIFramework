@@ -1,0 +1,104 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="using:System">
+
+  <Styles.Resources>
+    <sys:Double x:Key="TextControlThemeMinHeight">36</sys:Double>
+    <Thickness x:Key="TextControlThemePadding">12,8,10,8</Thickness>
+    <sys:Double x:Key="ComboBoxMinHeight">36</sys:Double>
+    <Thickness x:Key="ComboBoxPadding">12,7,0,7</Thickness>
+    <sys:Double x:Key="TabItemMinHeight">40</sys:Double>
+    <Thickness x:Key="ListBoxItemPadding">12,8</Thickness>
+  </Styles.Resources>
+
+  <!-- TextBox ===================================================== -->
+  <Style Selector="TextBox">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+    <Setter Property="CaretBrush" Value="{DynamicResource Lumen.Brush.Accent}" />
+  </Style>
+  <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+    <Setter Property="BorderThickness" Value="1.5" />
+  </Style>
+  <Style Selector="TextBox:error /template/ Border#PART_BorderElement">
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Danger}" />
+  </Style>
+
+  <!-- filled variant: tinted background, borderless until focused -->
+  <Style Selector="TextBox.filled">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceSubtle}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="TextBox.filled:pointerover /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="TextBox.filled:focus /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.InputBackground}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Accent}" />
+  </Style>
+
+  <!-- ComboBox ==================================================== -->
+  <Style Selector="ComboBox">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+  </Style>
+  <Style Selector="ComboBoxItem">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+    <Setter Property="Margin" Value="0,1" />
+  </Style>
+
+  <!-- CheckBox / RadioButton ====================================== -->
+  <Style Selector="CheckBox">
+    <Setter Property="CornerRadius" Value="5" />
+  </Style>
+
+  <!-- ProgressBar ================================================= -->
+  <Style Selector="ProgressBar">
+    <Setter Property="CornerRadius" Value="3" />
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Track}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Accent}" />
+  </Style>
+  <Style Selector="ProgressBar.success">
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Success}" />
+  </Style>
+  <Style Selector="ProgressBar.warning">
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Warning}" />
+  </Style>
+  <Style Selector="ProgressBar.danger">
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Danger}" />
+  </Style>
+
+  <!-- ListBox ===================================================== -->
+  <Style Selector="ListBox">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="ListBoxItem">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="Margin" Value="0,1" />
+  </Style>
+  <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+  </Style>
+
+  <!-- ToolTip / Flyouts =========================================== -->
+  <Style Selector="ToolTip">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+    <Setter Property="FontWeight" Value="Medium" />
+  </Style>
+  <Style Selector="MenuFlyoutPresenter, FlyoutPresenter, ContextMenu">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Lg}" />
+  </Style>
+  <Style Selector="MenuItem">
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+  </Style>
+
+  <!-- TabControl ================================================== -->
+  <Style Selector="TabItem">
+    <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+  </Style>
+
+  <!-- ScrollViewer: keep content clear of overlay scrollbars -->
+  <Style Selector="ScrollBar">
+    <Setter Property="AllowAutoHide" Value="True" />
+  </Style>
+</Styles>

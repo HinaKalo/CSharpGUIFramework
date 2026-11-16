@@ -1,0 +1,251 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Design.PreviewWith>
+    <StackPanel Margin="24" Spacing="12" Orientation="Horizontal">
+      <Button Content="Default" />
+      <Button Classes="primary" Content="Primary" />
+      <Button Classes="soft" Content="Soft" />
+      <Button Classes="outline" Content="Outline" />
+      <Button Classes="ghost" Content="Ghost" />
+      <Button Classes="danger" Content="Danger" />
+      <ToggleButton Content="Toggle" IsChecked="True" />
+    </StackPanel>
+  </Design.PreviewWith>
+
+  <!--
+    Button variants (combine via Classes):
+      color : (default) | primary (alias: accent) | soft | outline | ghost | danger | danger-soft | link
+      size  : sm | lg
+      shape : icon (square) | pill
+      layout: block (stretch horizontally)
+  -->
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Surface}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.BorderStrong}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Md}" />
+    <Setter Property="Padding" Value="{DynamicResource Lumen.Padding.Control}" />
+    <Setter Property="MinHeight" Value="{DynamicResource Lumen.Height.Md}" />
+    <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="RenderTransform" Value="none" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <BrushTransition Property="Background" Duration="0:0:0.12" />
+        <BrushTransition Property="BorderBrush" Duration="0:0:0.12" />
+        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.08" />
+      </Transitions>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                BoxShadow="{DynamicResource Lumen.Shadow.Xs}">
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Padding="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <!-- default (secondary) -->
+    <Style Selector="^:pointerover">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceSubtle}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.BorderHover}" />
+    </Style>
+    <Style Selector="^:pressed">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+      <Setter Property="RenderTransform" Value="scale(0.98)" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.5" />
+      <Setter Property="Cursor" Value="Arrow" />
+    </Style>
+    <Style Selector="^:focus-visible /template/ Border#PART_Border">
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Accent}" />
+    </Style>
+
+    <!-- primary / accent -->
+    <Style Selector="^.primary, ^.accent">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Accent}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextOnAccent}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentPressed}" />
+      </Style>
+      <Style Selector="^:focus-visible /template/ Border#PART_Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.FocusRing}" />
+      </Style>
+    </Style>
+
+    <!-- soft (tinted accent) -->
+    <Style Selector="^.soft">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtleHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtleHover}" />
+      </Style>
+    </Style>
+
+    <!-- outline -->
+    <Style Selector="^.outline">
+      <Setter Property="Background" Value="Transparent" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfacePressed}" />
+      </Style>
+    </Style>
+
+    <!-- ghost -->
+    <Style Selector="^.ghost">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextSecondary}" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfaceHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfacePressed}" />
+      </Style>
+    </Style>
+
+    <!-- danger -->
+    <Style Selector="^.danger">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Danger}" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerHover}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerPressed}" />
+      </Style>
+    </Style>
+
+    <Style Selector="^.danger-soft">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.DangerSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.DangerText}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Danger}" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+      </Style>
+    </Style>
+
+    <!-- link -->
+    <Style Selector="^.link">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="MinHeight" Value="0" />
+      <Style Selector="^ /template/ Border#PART_Border">
+        <Setter Property="BoxShadow" Value="{DynamicResource Lumen.Shadow.None}" />
+      </Style>
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.Accent}" />
+      </Style>
+      <Style Selector="^:pressed">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="RenderTransform" Value="none" />
+      </Style>
+    </Style>
+
+    <!-- sizes -->
+    <Style Selector="^.sm">
+      <Setter Property="MinHeight" Value="{DynamicResource Lumen.Height.Sm}" />
+      <Setter Property="Padding" Value="{DynamicResource Lumen.Padding.ControlSm}" />
+      <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Caption}" />
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Sm}" />
+    </Style>
+    <Style Selector="^.lg">
+      <Setter Property="MinHeight" Value="{DynamicResource Lumen.Height.Lg}" />
+      <Setter Property="Padding" Value="{DynamicResource Lumen.Padding.ControlLg}" />
+      <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Subtitle}" />
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Lg}" />
+    </Style>
+
+    <!-- shapes -->
+    <Style Selector="^.icon">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Width" Value="{DynamicResource Lumen.Height.Md}" />
+      <Setter Property="Height" Value="{DynamicResource Lumen.Height.Md}" />
+      <Style Selector="^.sm">
+        <Setter Property="Width" Value="{DynamicResource Lumen.Height.Sm}" />
+        <Setter Property="Height" Value="{DynamicResource Lumen.Height.Sm}" />
+      </Style>
+      <Style Selector="^.lg">
+        <Setter Property="Width" Value="{DynamicResource Lumen.Height.Lg}" />
+        <Setter Property="Height" Value="{DynamicResource Lumen.Height.Lg}" />
+      </Style>
+    </Style>
+    <Style Selector="^.pill">
+      <Setter Property="CornerRadius" Value="{DynamicResource Lumen.Radius.Full}" />
+    </Style>
+    <Style Selector="^.block">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type ToggleButton}" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type Button}}">
+    <Style Selector="^:checked">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtle}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.AccentText}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Accent}" />
+      <Style Selector="^:pointerover">
+        <Setter Property="Background" Value="{DynamicResource Lumen.Brush.AccentSubtleHover}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Lumen.Brush.Accent}" />
+      </Style>
+    </Style>
+    <Style Selector="^.ghost:checked">
+      <Setter Property="Background" Value="{DynamicResource Lumen.Brush.SurfacePressed}" />
+      <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

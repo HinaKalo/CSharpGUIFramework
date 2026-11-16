@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <!-- ============================================================
@@ -60,6 +60,8 @@
   <!-- Misc -->
   <SolidColorBrush x:Key="Lumen.Brush.Track" Color="#2E2E35" />
   <SolidColorBrush x:Key="Lumen.Brush.TrackHover" Color="#3A3A43" />
+  <SolidColorBrush x:Key="Lumen.Brush.SwitchOff" Color="#3A3A43" />
+  <SolidColorBrush x:Key="Lumen.Brush.SwitchOffHover" Color="#4A4A55" />
   <SolidColorBrush x:Key="Lumen.Brush.Skeleton" Color="#212127" />
   <SolidColorBrush x:Key="Lumen.Brush.SkeletonHighlight" Color="#2B2B32" />
   <SolidColorBrush x:Key="Lumen.Brush.Knob" Color="#FFFFFF" />
@@ -173,12 +175,12 @@
   <StaticResource x:Key="SliderThumbBackgroundPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
   <StaticResource x:Key="SliderThumbBackgroundPressed" ResourceKey="Lumen.Brush.AccentPressed" />
 
-  <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="Lumen.Brush.Track" />
-  <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="Lumen.Brush.TrackHover" />
-  <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="Lumen.Brush.TrackHover" />
-  <StaticResource x:Key="ToggleSwitchStrokeOff" ResourceKey="Lumen.Brush.Track" />
-  <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="Lumen.Brush.TrackHover" />
-  <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="Lumen.Brush.SwitchOff" />
+  <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="Lumen.Brush.SwitchOffHover" />
+  <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="Lumen.Brush.SwitchOffHover" />
+  <StaticResource x:Key="ToggleSwitchStrokeOff" ResourceKey="Lumen.Brush.SwitchOff" />
+  <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="Lumen.Brush.SwitchOffHover" />
+  <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="Lumen.Brush.SwitchOffHover" />
   <StaticResource x:Key="ToggleSwitchFillOn" ResourceKey="Lumen.Brush.Accent" />
   <StaticResource x:Key="ToggleSwitchFillOnPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
   <StaticResource x:Key="ToggleSwitchFillOnPressed" ResourceKey="Lumen.Brush.AccentPressed" />
