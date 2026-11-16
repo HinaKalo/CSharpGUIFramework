@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Lumen.UI</RootNamespace>
+    <AssemblyName>Lumen.UI</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <IsPackable>true</IsPackable>
+    <PackageId>Lumen.UI</PackageId>
+    <Description>A modern, token-driven component library for Avalonia built on top of FluentTheme.</Description>
+    <PackageTags>avalonia;ui;components;theme;design-system</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+    <PackageReference Include="Avalonia.Fonts.Inter" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,34 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Ll]og/
+[Ll]ogs/
+TestResults/
+*.binlog
+
+# IDE / editor
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.user
+*.suo
+*.userprefs
+*.DotSettings.user
+*.swp
+.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+
+# Rider / ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Claude Code local settings
+.claude/settings.local.json
