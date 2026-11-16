@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Lumen.UI/Lumen.UI.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Lumen.UI.Tests/Lumen.UI.Tests.csproj" />
+  </Folder>
 </Solution>
