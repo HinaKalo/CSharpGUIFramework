@@ -1,0 +1,207 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!-- ============================================================
+       Lumen semantic tokens — LIGHT
+       Accent brushes follow Fluent's SystemAccentColor family, so
+       ThemeManager.SetAccent() recolors everything at runtime.
+       ============================================================ -->
+
+  <!-- Surfaces -->
+  <SolidColorBrush x:Key="Lumen.Brush.Background" Color="#F7F7F8" />
+  <SolidColorBrush x:Key="Lumen.Brush.Surface" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.SurfaceElevated" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.SurfaceSubtle" Color="#F4F4F5" />
+  <SolidColorBrush x:Key="Lumen.Brush.SurfaceHover" Color="#EFEFF1" />
+  <SolidColorBrush x:Key="Lumen.Brush.SurfacePressed" Color="#E6E6E9" />
+  <SolidColorBrush x:Key="Lumen.Brush.Sidebar" Color="#FBFBFC" />
+  <SolidColorBrush x:Key="Lumen.Brush.InputBackground" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.Overlay" Color="#59000000" />
+
+  <!-- Borders -->
+  <SolidColorBrush x:Key="Lumen.Brush.Border" Color="#E4E4E7" />
+  <SolidColorBrush x:Key="Lumen.Brush.BorderSubtle" Color="#EFEFF1" />
+  <SolidColorBrush x:Key="Lumen.Brush.BorderStrong" Color="#D4D4D8" />
+  <SolidColorBrush x:Key="Lumen.Brush.BorderHover" Color="#B9B9C1" />
+
+  <!-- Text -->
+  <SolidColorBrush x:Key="Lumen.Brush.TextPrimary" Color="#18181B" />
+  <SolidColorBrush x:Key="Lumen.Brush.TextSecondary" Color="#52525B" />
+  <SolidColorBrush x:Key="Lumen.Brush.TextTertiary" Color="#8B8B94" />
+  <SolidColorBrush x:Key="Lumen.Brush.TextDisabled" Color="#B4B4BB" />
+  <SolidColorBrush x:Key="Lumen.Brush.TextOnAccent" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.TextInverse" Color="#FAFAFA" />
+
+  <!-- Accent -->
+  <SolidColorBrush x:Key="Lumen.Brush.Accent" Color="{DynamicResource SystemAccentColor}" />
+  <SolidColorBrush x:Key="Lumen.Brush.AccentHover" Color="{DynamicResource SystemAccentColorDark1}" />
+  <SolidColorBrush x:Key="Lumen.Brush.AccentPressed" Color="{DynamicResource SystemAccentColorDark2}" />
+  <SolidColorBrush x:Key="Lumen.Brush.AccentSubtle" Color="{DynamicResource SystemAccentColor}" Opacity="0.10" />
+  <SolidColorBrush x:Key="Lumen.Brush.AccentSubtleHover" Color="{DynamicResource SystemAccentColor}" Opacity="0.16" />
+  <SolidColorBrush x:Key="Lumen.Brush.AccentText" Color="{DynamicResource SystemAccentColorDark1}" />
+  <SolidColorBrush x:Key="Lumen.Brush.FocusRing" Color="{DynamicResource SystemAccentColor}" Opacity="0.45" />
+
+  <!-- Status -->
+  <SolidColorBrush x:Key="Lumen.Brush.Success" Color="#16A34A" />
+  <SolidColorBrush x:Key="Lumen.Brush.SuccessSubtle" Color="#ECFDF3" />
+  <SolidColorBrush x:Key="Lumen.Brush.SuccessText" Color="#15803D" />
+  <SolidColorBrush x:Key="Lumen.Brush.Warning" Color="#D97706" />
+  <SolidColorBrush x:Key="Lumen.Brush.WarningSubtle" Color="#FFF8EB" />
+  <SolidColorBrush x:Key="Lumen.Brush.WarningText" Color="#B45309" />
+  <SolidColorBrush x:Key="Lumen.Brush.Danger" Color="#DC2626" />
+  <SolidColorBrush x:Key="Lumen.Brush.DangerHover" Color="#B91C1C" />
+  <SolidColorBrush x:Key="Lumen.Brush.DangerPressed" Color="#991B1B" />
+  <SolidColorBrush x:Key="Lumen.Brush.DangerSubtle" Color="#FEF2F2" />
+  <SolidColorBrush x:Key="Lumen.Brush.DangerText" Color="#B91C1C" />
+  <SolidColorBrush x:Key="Lumen.Brush.Info" Color="#0284C7" />
+  <SolidColorBrush x:Key="Lumen.Brush.InfoSubtle" Color="#EFF8FF" />
+  <SolidColorBrush x:Key="Lumen.Brush.InfoText" Color="#0369A1" />
+
+  <!-- Misc -->
+  <SolidColorBrush x:Key="Lumen.Brush.Track" Color="#E4E4E7" />
+  <SolidColorBrush x:Key="Lumen.Brush.TrackHover" Color="#D4D4D8" />
+  <SolidColorBrush x:Key="Lumen.Brush.Skeleton" Color="#ECECEF" />
+  <SolidColorBrush x:Key="Lumen.Brush.SkeletonHighlight" Color="#F7F7F9" />
+  <SolidColorBrush x:Key="Lumen.Brush.Knob" Color="#FFFFFF" />
+  <SolidColorBrush x:Key="Lumen.Brush.ToolTip" Color="#18181B" />
+  <SolidColorBrush x:Key="Lumen.Brush.ToolTipText" Color="#FAFAFA" />
+
+  <!-- Elevation -->
+  <BoxShadows x:Key="Lumen.Shadow.None">0 0 0 0 #00000000</BoxShadows>
+  <BoxShadows x:Key="Lumen.Shadow.Xs">0 1 2 0 #0D000000</BoxShadows>
+  <BoxShadows x:Key="Lumen.Shadow.Sm">0 1 3 0 #12000000, 0 1 2 -1 #0D000000</BoxShadows>
+  <BoxShadows x:Key="Lumen.Shadow.Md">0 6 16 -4 #1A000000, 0 2 6 -2 #0F000000</BoxShadows>
+  <BoxShadows x:Key="Lumen.Shadow.Lg">0 18 40 -10 #29000000, 0 8 16 -8 #14000000</BoxShadows>
+
+  <!-- ============================================================
+       Fluent bridge (theme specific)
+       ============================================================ -->
+  <StaticResource x:Key="SystemControlHighlightListLowBrush" ResourceKey="Lumen.Brush.SurfaceHover" />
+  <StaticResource x:Key="SystemControlHighlightListMediumBrush" ResourceKey="Lumen.Brush.SurfacePressed" />
+  <StaticResource x:Key="SystemControlHighlightListAccentLowBrush" ResourceKey="Lumen.Brush.AccentSubtle" />
+  <StaticResource x:Key="SystemControlHighlightListAccentMediumBrush" ResourceKey="Lumen.Brush.AccentSubtleHover" />
+  <StaticResource x:Key="SystemControlHighlightListAccentHighBrush" ResourceKey="Lumen.Brush.AccentSubtleHover" />
+  <StaticResource x:Key="SystemControlTransientBackgroundBrush" ResourceKey="Lumen.Brush.SurfaceElevated" />
+  <StaticResource x:Key="SystemControlTransientBorderBrush" ResourceKey="Lumen.Brush.Border" />
+
+  <StaticResource x:Key="TextControlForeground" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TextControlForegroundPointerOver" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TextControlForegroundFocused" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TextControlForegroundDisabled" ResourceKey="Lumen.Brush.TextDisabled" />
+  <StaticResource x:Key="TextControlBackground" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="TextControlBackgroundPointerOver" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="TextControlBackgroundFocused" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="TextControlBackgroundDisabled" ResourceKey="Lumen.Brush.SurfaceSubtle" />
+  <StaticResource x:Key="TextControlBorderBrush" ResourceKey="Lumen.Brush.BorderStrong" />
+  <StaticResource x:Key="TextControlBorderBrushPointerOver" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="TextControlBorderBrushFocused" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="TextControlBorderBrushDisabled" ResourceKey="Lumen.Brush.Border" />
+  <StaticResource x:Key="TextControlPlaceholderForeground" ResourceKey="Lumen.Brush.TextTertiary" />
+  <StaticResource x:Key="TextControlPlaceholderForegroundPointerOver" ResourceKey="Lumen.Brush.TextTertiary" />
+  <StaticResource x:Key="TextControlPlaceholderForegroundFocused" ResourceKey="Lumen.Brush.TextTertiary" />
+  <StaticResource x:Key="TextControlPlaceholderForegroundDisabled" ResourceKey="Lumen.Brush.TextDisabled" />
+  <StaticResource x:Key="TextControlButtonForeground" ResourceKey="Lumen.Brush.TextTertiary" />
+  <StaticResource x:Key="TextControlButtonForegroundPointerOver" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TextControlButtonBackgroundPressed" ResourceKey="Lumen.Brush.SurfacePressed" />
+  <StaticResource x:Key="TextControlButtonForegroundPressed" ResourceKey="Lumen.Brush.TextPrimary" />
+
+  <StaticResource x:Key="ComboBoxBackground" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="ComboBoxBackgroundPointerOver" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="ComboBoxBackgroundPressed" ResourceKey="Lumen.Brush.SurfaceSubtle" />
+  <StaticResource x:Key="ComboBoxBackgroundDisabled" ResourceKey="Lumen.Brush.SurfaceSubtle" />
+  <StaticResource x:Key="ComboBoxBackgroundUnfocused" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="ComboBoxBorderBrush" ResourceKey="Lumen.Brush.BorderStrong" />
+  <StaticResource x:Key="ComboBoxBorderBrushPointerOver" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="ComboBoxBorderBrushPressed" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="ComboBoxBorderBrushDisabled" ResourceKey="Lumen.Brush.Border" />
+  <StaticResource x:Key="ComboBoxPlaceHolderForeground" ResourceKey="Lumen.Brush.TextTertiary" />
+  <StaticResource x:Key="ComboBoxForeground" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="ComboBoxForegroundDisabled" ResourceKey="Lumen.Brush.TextDisabled" />
+  <StaticResource x:Key="ComboBoxDropDownBackground" ResourceKey="Lumen.Brush.SurfaceElevated" />
+  <StaticResource x:Key="ComboBoxDropDownBorderBrush" ResourceKey="Lumen.Brush.Border" />
+  <StaticResource x:Key="ComboBoxItemBackgroundPointerOver" ResourceKey="Lumen.Brush.SurfaceHover" />
+  <StaticResource x:Key="ComboBoxItemBackgroundPressed" ResourceKey="Lumen.Brush.SurfacePressed" />
+  <StaticResource x:Key="ComboBoxItemBackgroundSelected" ResourceKey="Lumen.Brush.AccentSubtle" />
+  <StaticResource x:Key="ComboBoxItemBackgroundSelectedPointerOver" ResourceKey="Lumen.Brush.AccentSubtleHover" />
+  <StaticResource x:Key="ComboBoxItemBackgroundSelectedPressed" ResourceKey="Lumen.Brush.AccentSubtleHover" />
+
+  <StaticResource x:Key="MenuFlyoutPresenterBackground" ResourceKey="Lumen.Brush.SurfaceElevated" />
+  <StaticResource x:Key="MenuFlyoutPresenterBorderBrush" ResourceKey="Lumen.Brush.Border" />
+  <StaticResource x:Key="MenuFlyoutItemBackgroundPointerOver" ResourceKey="Lumen.Brush.SurfaceHover" />
+  <StaticResource x:Key="MenuFlyoutItemBackgroundPressed" ResourceKey="Lumen.Brush.SurfacePressed" />
+  <StaticResource x:Key="FlyoutPresenterBackground" ResourceKey="Lumen.Brush.SurfaceElevated" />
+  <StaticResource x:Key="FlyoutBorderThemeBrush" ResourceKey="Lumen.Brush.Border" />
+
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeUnchecked" ResourceKey="Lumen.Brush.BorderStrong" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeUncheckedPointerOver" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeUncheckedPressed" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillUnchecked" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillUncheckedPointerOver" ResourceKey="Lumen.Brush.SurfaceSubtle" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillUncheckedPressed" ResourceKey="Lumen.Brush.SurfaceHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillChecked" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillCheckedPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeChecked" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeCheckedPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminate" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundFillIndeterminatePressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminate" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="CheckBoxCheckBackgroundStrokeIndeterminatePressed" ResourceKey="Lumen.Brush.AccentPressed" />
+
+  <StaticResource x:Key="RadioButtonOuterEllipseStroke" ResourceKey="Lumen.Brush.BorderStrong" />
+  <StaticResource x:Key="RadioButtonOuterEllipseStrokePointerOver" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="RadioButtonOuterEllipseStrokePressed" ResourceKey="Lumen.Brush.BorderHover" />
+  <StaticResource x:Key="RadioButtonOuterEllipseFill" ResourceKey="Lumen.Brush.InputBackground" />
+  <StaticResource x:Key="RadioButtonOuterEllipseFillPointerOver" ResourceKey="Lumen.Brush.SurfaceSubtle" />
+  <StaticResource x:Key="RadioButtonOuterEllipseFillPressed" ResourceKey="Lumen.Brush.SurfaceHover" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedStroke" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedStrokePressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedFill" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="RadioButtonOuterEllipseCheckedFillPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+
+  <StaticResource x:Key="SliderTrackFill" ResourceKey="Lumen.Brush.Track" />
+  <StaticResource x:Key="SliderTrackFillPointerOver" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="SliderTrackFillPressed" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="SliderTrackValueFill" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="SliderTrackValueFillPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="SliderTrackValueFillPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="SliderThumbBackground" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="SliderThumbBackgroundPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="SliderThumbBackgroundPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+
+  <StaticResource x:Key="ToggleSwitchFillOff" ResourceKey="Lumen.Brush.Track" />
+  <StaticResource x:Key="ToggleSwitchFillOffPointerOver" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="ToggleSwitchFillOffPressed" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="ToggleSwitchStrokeOff" ResourceKey="Lumen.Brush.Track" />
+  <StaticResource x:Key="ToggleSwitchStrokeOffPointerOver" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="ToggleSwitchStrokeOffPressed" ResourceKey="Lumen.Brush.TrackHover" />
+  <StaticResource x:Key="ToggleSwitchFillOn" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="ToggleSwitchFillOnPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="ToggleSwitchFillOnPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="ToggleSwitchStrokeOn" ResourceKey="Lumen.Brush.Accent" />
+  <StaticResource x:Key="ToggleSwitchStrokeOnPointerOver" ResourceKey="Lumen.Brush.AccentHover" />
+  <StaticResource x:Key="ToggleSwitchStrokeOnPressed" ResourceKey="Lumen.Brush.AccentPressed" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOff" ResourceKey="Lumen.Brush.Knob" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOffPointerOver" ResourceKey="Lumen.Brush.Knob" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOffPressed" ResourceKey="Lumen.Brush.Knob" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOn" ResourceKey="Lumen.Brush.Knob" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOnPointerOver" ResourceKey="Lumen.Brush.Knob" />
+  <StaticResource x:Key="ToggleSwitchKnobFillOnPressed" ResourceKey="Lumen.Brush.Knob" />
+
+  <StaticResource x:Key="ToolTipBackground" ResourceKey="Lumen.Brush.ToolTip" />
+  <StaticResource x:Key="ToolTipForeground" ResourceKey="Lumen.Brush.ToolTipText" />
+  <StaticResource x:Key="ToolTipBorderBrush" ResourceKey="Lumen.Brush.ToolTip" />
+
+  <StaticResource x:Key="TabItemHeaderForegroundUnselected" ResourceKey="Lumen.Brush.TextSecondary" />
+  <StaticResource x:Key="TabItemHeaderForegroundUnselectedPointerOver" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TabItemHeaderForegroundUnselectedPressed" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TabItemHeaderForegroundSelected" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TabItemHeaderForegroundSelectedPointerOver" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TabItemHeaderForegroundSelectedPressed" ResourceKey="Lumen.Brush.TextPrimary" />
+  <StaticResource x:Key="TabItemHeaderSelectedPipeFill" ResourceKey="Lumen.Brush.Accent" />
+
+</ResourceDictionary>

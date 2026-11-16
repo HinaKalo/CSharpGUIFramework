@@ -1,0 +1,75 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System">
+
+  <!-- ============================================================
+       Lumen foundation tokens (theme independent)
+       ============================================================ -->
+
+  <!-- Typography -->
+  <FontFamily x:Key="Lumen.Font.Sans">fonts:Inter#Inter, $Default</FontFamily>
+  <FontFamily x:Key="Lumen.Font.Mono">Cascadia Mono, Consolas, Menlo, monospace</FontFamily>
+
+  <sys:Double x:Key="Lumen.FontSize.Caption">12</sys:Double>
+  <sys:Double x:Key="Lumen.FontSize.Body">14</sys:Double>
+  <sys:Double x:Key="Lumen.FontSize.Subtitle">16</sys:Double>
+  <sys:Double x:Key="Lumen.FontSize.Title">20</sys:Double>
+  <sys:Double x:Key="Lumen.FontSize.Headline">28</sys:Double>
+  <sys:Double x:Key="Lumen.FontSize.Display">36</sys:Double>
+
+  <!-- Corner radius -->
+  <CornerRadius x:Key="Lumen.Radius.None">0</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Xs">4</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Sm">6</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Md">8</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Lg">12</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Xl">16</CornerRadius>
+  <CornerRadius x:Key="Lumen.Radius.Full">9999</CornerRadius>
+
+  <!-- Spacing (4px grid) -->
+  <sys:Double x:Key="Lumen.Space.1">4</sys:Double>
+  <sys:Double x:Key="Lumen.Space.2">8</sys:Double>
+  <sys:Double x:Key="Lumen.Space.3">12</sys:Double>
+  <sys:Double x:Key="Lumen.Space.4">16</sys:Double>
+  <sys:Double x:Key="Lumen.Space.5">20</sys:Double>
+  <sys:Double x:Key="Lumen.Space.6">24</sys:Double>
+  <sys:Double x:Key="Lumen.Space.8">32</sys:Double>
+  <sys:Double x:Key="Lumen.Space.10">40</sys:Double>
+  <sys:Double x:Key="Lumen.Space.12">48</sys:Double>
+
+  <Thickness x:Key="Lumen.Padding.Card">20</Thickness>
+  <Thickness x:Key="Lumen.Padding.Page">32,28</Thickness>
+  <Thickness x:Key="Lumen.Padding.Control">12,7</Thickness>
+  <Thickness x:Key="Lumen.Padding.ControlSm">10,4</Thickness>
+  <Thickness x:Key="Lumen.Padding.ControlLg">18,10</Thickness>
+
+  <!-- Control sizing -->
+  <sys:Double x:Key="Lumen.Height.Sm">28</sys:Double>
+  <sys:Double x:Key="Lumen.Height.Md">36</sys:Double>
+  <sys:Double x:Key="Lumen.Height.Lg">44</sys:Double>
+
+  <!-- Motion -->
+  <sys:TimeSpan x:Key="Lumen.Duration.Fast">0:0:0.12</sys:TimeSpan>
+  <sys:TimeSpan x:Key="Lumen.Duration.Normal">0:0:0.2</sys:TimeSpan>
+  <sys:TimeSpan x:Key="Lumen.Duration.Slow">0:0:0.32</sys:TimeSpan>
+
+  <!-- ============================================================
+       Fluent bridge: theme-independent overrides of Fluent keys
+       ============================================================ -->
+  <FontFamily x:Key="ContentControlThemeFontFamily">fonts:Inter#Inter, $Default</FontFamily>
+  <CornerRadius x:Key="ControlCornerRadius">8</CornerRadius>
+  <CornerRadius x:Key="OverlayCornerRadius">12</CornerRadius>
+  <sys:Double x:Key="ProgressBarThemeMinHeight">6</sys:Double>
+  <sys:Double x:Key="TabItemHeaderFontSize">14</sys:Double>
+  <FontWeight x:Key="TabItemHeaderThemeFontWeight">Medium</FontWeight>
+  <Thickness x:Key="TabItemHeaderMargin">10,0,10,0</Thickness>
+  <Thickness x:Key="TabItemMargin">0</Thickness>
+  <sys:Double x:Key="ToolTipContentThemeFontSize">12</sys:Double>
+  <Thickness x:Key="ToolTipBorderThemePadding">8,5,8,6</Thickness>
+  <Thickness x:Key="ToolTipBorderThemeThickness">0</Thickness>
+  <Thickness x:Key="MenuFlyoutPresenterThemePadding">4</Thickness>
+  <Thickness x:Key="MenuFlyoutItemThemePadding">10,7,10,8</Thickness>
+  <Thickness x:Key="ComboBoxItemThemePadding">10,7,10,8</Thickness>
+  <Thickness x:Key="ComboBoxDropdownContentMargin">4</Thickness>
+
+</ResourceDictionary>

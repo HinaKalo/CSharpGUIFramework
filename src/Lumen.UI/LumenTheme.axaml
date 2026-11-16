@@ -1,0 +1,76 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Lumen.UI.LumenTheme">
+
+  <Styles.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://Lumen.UI/Tokens/Foundation.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceInclude x:Key="Light" Source="avares://Lumen.UI/Tokens/Light.axaml" />
+        <ResourceInclude x:Key="Dark" Source="avares://Lumen.UI/Tokens/Dark.axaml" />
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Styles.Resources>
+
+  <!-- Base: Avalonia Fluent theme, re-tinted with Lumen neutrals -->
+  <FluentTheme>
+    <FluentTheme.Palettes>
+      <ColorPaletteResources x:Key="Light"
+                             Accent="#4F46E5"
+                             RegionColor="#F7F7F8"
+                             ErrorText="#DC2626"
+                             BaseHigh="#FF18181B"
+                             BaseMediumHigh="#CC18181B"
+                             BaseMedium="#8C18181B"
+                             BaseMediumLow="#5218181B"
+                             BaseLow="#1F18181B"
+                             AltHigh="#FFFFFFFF"
+                             AltMediumHigh="#CCFFFFFF"
+                             AltMedium="#99FFFFFF"
+                             AltMediumLow="#66FFFFFF"
+                             AltLow="#33FFFFFF"
+                             ChromeLow="#FFF4F4F5"
+                             ChromeMediumLow="#FFF4F4F5"
+                             ChromeMedium="#FFE4E4E7"
+                             ChromeHigh="#FFD4D4D8"
+                             ChromeAltLow="#FF18181B"
+                             ChromeGray="#FF71717A"
+                             ChromeWhite="#FFFFFFFF"
+                             ChromeDisabledHigh="#FFD4D4D8"
+                             ChromeDisabledLow="#FFA1A1AA"
+                             ListLow="#0F18181B"
+                             ListMedium="#1F18181B" />
+      <ColorPaletteResources x:Key="Dark"
+                             Accent="#4F46E5"
+                             RegionColor="#0E0E11"
+                             ErrorText="#F87171"
+                             BaseHigh="#FFF4F4F5"
+                             BaseMediumHigh="#CCF4F4F5"
+                             BaseMedium="#8CF4F4F5"
+                             BaseMediumLow="#52F4F4F5"
+                             BaseLow="#1FF4F4F5"
+                             AltHigh="#FF16161A"
+                             AltMediumHigh="#CC16161A"
+                             AltMedium="#9916161A"
+                             AltMediumLow="#6616161A"
+                             AltLow="#3316161A"
+                             ChromeLow="#FF1B1B20"
+                             ChromeMediumLow="#FF1E1E23"
+                             ChromeMedium="#FF25252B"
+                             ChromeHigh="#FF36363F"
+                             ChromeAltLow="#FFF4F4F5"
+                             ChromeGray="#FFA1A1AA"
+                             ChromeWhite="#FFFFFFFF"
+                             ChromeDisabledHigh="#FF36363F"
+                             ChromeDisabledLow="#FF71717A"
+                             ListLow="#14FFFFFF"
+                             ListMedium="#24FFFFFF" />
+    </FluentTheme.Palettes>
+  </FluentTheme>
+
+  <!-- Lumen layer -->
+  <StyleInclude Source="avares://Lumen.UI/Styles/Typography.axaml" />
+  <StyleInclude Source="avares://Lumen.UI/Styles/Window.axaml" />
+</Styles>

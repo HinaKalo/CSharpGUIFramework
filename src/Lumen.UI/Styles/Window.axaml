@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Style Selector="Window">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Background}" />
+    <Setter Property="Foreground" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+    <Setter Property="FontFamily" Value="{DynamicResource Lumen.Font.Sans}" />
+    <Setter Property="FontSize" Value="{DynamicResource Lumen.FontSize.Body}" />
+  </Style>
+
+  <!-- Thin separators that follow the border token -->
+  <Style Selector="Separator">
+    <Setter Property="Background" Value="{DynamicResource Lumen.Brush.Border}" />
+    <Setter Property="Margin" Value="0,8" />
+    <Setter Property="Height" Value="1" />
+  </Style>
+
+  <Style Selector="SelectableTextBlock">
+    <Setter Property="SelectionBrush" Value="{DynamicResource Lumen.Brush.AccentSubtleHover}" />
+  </Style>
+  <Style Selector="TextBox">
+    <Setter Property="SelectionBrush" Value="{DynamicResource Lumen.Brush.AccentSubtleHover}" />
+    <Setter Property="SelectionForegroundBrush" Value="{DynamicResource Lumen.Brush.TextPrimary}" />
+  </Style>
+</Styles>
