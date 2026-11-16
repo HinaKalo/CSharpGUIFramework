@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/Lumen.Gallery/Lumen.Gallery.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Lumen.UI/Lumen.UI.csproj" />
   </Folder>

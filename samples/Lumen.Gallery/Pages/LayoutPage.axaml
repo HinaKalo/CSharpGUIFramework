@@ -1,0 +1,104 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.LayoutPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Section header" Description="Title, description and an actions slot — use it at the top of every page section.">
+          <l:SectionHeader.Actions>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+              <Button Classes="outline" Content="Import" />
+              <Button Classes="primary">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <l:Icon Kind="Plus" Size="14" />
+                  <TextBlock Text="New item" />
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </l:SectionHeader.Actions>
+        </l:SectionHeader>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Tabs" />
+        <l:Card Padding="20,8,20,20">
+          <TabControl>
+            <TabItem Header="Overview">
+              <TextBlock Classes="secondary" Margin="0,12,0,0" TextWrapping="Wrap"
+                         Text="Fluent's TabControl, re-tinted: smaller headers, accent underline, Lumen text colors." />
+            </TabItem>
+            <TabItem Header="Activity">
+              <TextBlock Classes="secondary" Margin="0,12,0,0" Text="Activity content" />
+            </TabItem>
+            <TabItem Header="Settings">
+              <TextBlock Classes="secondary" Margin="0,12,0,0" Text="Settings content" />
+            </TabItem>
+          </TabControl>
+        </l:Card>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="List" />
+          <l:Card Padding="8">
+            <ListBox SelectedIndex="1">
+              <ListBoxItem>
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                  <l:Icon Kind="Inbox" />
+                  <TextBlock Grid.Column="1" Margin="10,0" Text="Inbox" />
+                  <l:Badge Grid.Column="2" Content="12" />
+                </Grid>
+              </ListBoxItem>
+              <ListBoxItem>
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                  <l:Icon Kind="Star" />
+                  <TextBlock Grid.Column="1" Margin="10,0" Text="Starred" />
+                  <l:Badge Grid.Column="2" Classes="accent" Content="3" />
+                </Grid>
+              </ListBoxItem>
+              <ListBoxItem>
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                  <l:Icon Kind="FileText" />
+                  <TextBlock Grid.Column="1" Margin="10,0" Text="Drafts" />
+                </Grid>
+              </ListBoxItem>
+              <ListBoxItem>
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                  <l:Icon Kind="Trash" />
+                  <TextBlock Grid.Column="1" Margin="10,0" Text="Trash" />
+                </Grid>
+              </ListBoxItem>
+            </ListBox>
+          </l:Card>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Classes="section">
+          <l:SectionHeader Title="Expander &amp; separator" />
+          <l:Card>
+            <StackPanel Spacing="12">
+              <Expander Header="What is Lumen UI?" HorizontalAlignment="Stretch" IsExpanded="True">
+                <TextBlock Classes="secondary" TextWrapping="Wrap"
+                           Text="A personal component layer for Avalonia, focused on fast project bootstrapping." />
+              </Expander>
+              <Expander Header="Can I change the accent?" HorizontalAlignment="Stretch">
+                <TextBlock Classes="secondary" TextWrapping="Wrap" Text="Yes: ThemeManager.SetAccent(color)." />
+              </Expander>
+              <Separator />
+              <TextBlock Classes="caption tertiary" Text="Separators follow the border token." />
+            </StackPanel>
+          </l:Card>
+        </StackPanel>
+      </Grid>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="App shell" Description="This whole gallery is one AppShell: sidebar, top bar, page host, dialog host and toast host." />
+        <l:Card Classes="subtle">
+          <TextBlock Classes="mono secondary" TextWrapping="Wrap"
+                     Text="&lt;l:AppShell Title=&quot;My app&quot; NavItems=&quot;{Binding Nav}&quot; /&gt;   ·   new NavItem(&quot;Home&quot;, IconKind.Home, () =&gt; new HomePage())" />
+        </l:Card>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

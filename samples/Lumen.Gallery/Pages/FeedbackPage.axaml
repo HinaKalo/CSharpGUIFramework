@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.FeedbackPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Info bars" Description="Inline, persistent messages. Severity = Info | Success | Warning | Danger | Neutral." />
+        <StackPanel Spacing="10">
+          <l:InfoBar Severity="Info" Title="Heads up" Message="A new version of the template is available." IsClosable="True">
+            <l:InfoBar.Actions>
+              <Button Classes="sm" Content="Update" />
+            </l:InfoBar.Actions>
+          </l:InfoBar>
+          <l:InfoBar Severity="Success" Title="Deployment complete" Message="Your changes are live." IsClosable="True" />
+          <l:InfoBar Severity="Warning" Title="Storage almost full" Message="You have used 92% of your quota." />
+          <l:InfoBar Severity="Danger" Title="Payment failed" Message="We couldn't charge your card ending in 4242." />
+          <l:InfoBar Severity="Neutral" Message="Neutral bar without a title, for low-priority notes." />
+        </StackPanel>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="Toasts" Description="Toast.Success(&quot;Saved&quot;) from anywhere." />
+          <l:Card>
+            <WrapPanel Classes="row">
+              <Button Content="Info" Click="OnToastInfo" />
+              <Button Content="Success" Click="OnToastSuccess" />
+              <Button Content="Warning" Click="OnToastWarning" />
+              <Button Content="Error" Click="OnToastError" />
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Classes="section">
+          <l:SectionHeader Title="Dialogs" Description="await Dialog.ConfirmAsync(...) — in-window, no extra OS windows." />
+          <l:Card>
+            <WrapPanel Classes="row">
+              <Button Classes="primary" Content="Confirm" Click="OnConfirm" />
+              <Button Classes="danger-soft" Content="Delete…" Click="OnDelete" />
+              <Button Content="Alert" Click="OnAlert" />
+              <Button Classes="outline" Content="Custom form" Click="OnCustom" />
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+      </Grid>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Progress" />
+        <l:Card>
+          <StackPanel Spacing="16">
+            <ProgressBar Value="32" />
+            <ProgressBar Classes="success" Value="100" />
+            <ProgressBar Classes="warning" Value="76" />
+            <ProgressBar Classes="danger" Value="92" />
+            <ProgressBar IsIndeterminate="True" />
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Tooltips &amp; flyouts" />
+        <l:Card>
+          <WrapPanel Classes="row">
+            <Button Content="Hover for tooltip" ToolTip.Tip="Tooltips are dark in light mode and vice versa." />
+            <Button Content="Open menu">
+              <Button.Flyout>
+                <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                  <MenuItem Header="Rename">
+                    <MenuItem.Icon><l:Icon Kind="Pencil" /></MenuItem.Icon>
+                  </MenuItem>
+                  <MenuItem Header="Duplicate">
+                    <MenuItem.Icon><l:Icon Kind="Copy" /></MenuItem.Icon>
+                  </MenuItem>
+                  <MenuItem Header="Share">
+                    <MenuItem.Icon><l:Icon Kind="ExternalLink" /></MenuItem.Icon>
+                  </MenuItem>
+                  <Separator />
+                  <MenuItem Header="Delete">
+                    <MenuItem.Icon><l:Icon Kind="Trash" /></MenuItem.Icon>
+                  </MenuItem>
+                </MenuFlyout>
+              </Button.Flyout>
+            </Button>
+          </WrapPanel>
+        </l:Card>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

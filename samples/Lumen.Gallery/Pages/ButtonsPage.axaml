@@ -1,0 +1,146 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.ButtonsPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Variants" Description="Classes=&quot;primary | soft | outline | ghost | danger | danger-soft | link&quot;" />
+        <l:Card>
+          <WrapPanel Classes="row">
+            <Button Classes="primary" Content="Primary" />
+            <Button Content="Default" />
+            <Button Classes="soft" Content="Soft" />
+            <Button Classes="outline" Content="Outline" />
+            <Button Classes="ghost" Content="Ghost" />
+            <Button Classes="danger" Content="Danger" />
+            <Button Classes="danger-soft" Content="Danger soft" />
+            <Button Classes="link" Content="Link button" VerticalAlignment="Center" />
+          </WrapPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Sizes &amp; shapes" Description="sm / lg, icon (square), pill, block (stretch)." />
+        <l:Card>
+          <StackPanel Spacing="14">
+            <WrapPanel Classes="row">
+              <Button Classes="primary sm" Content="Small" />
+              <Button Classes="primary" Content="Medium" />
+              <Button Classes="primary lg" Content="Large" />
+              <Button Classes="pill" Content="Pill" />
+              <Button Classes="primary pill" Content="Pill primary" />
+            </WrapPanel>
+            <WrapPanel Classes="row">
+              <Button Classes="icon sm" ToolTip.Tip="Small"><l:Icon Kind="Plus" Size="14" /></Button>
+              <Button Classes="icon" ToolTip.Tip="Edit"><l:Icon Kind="Pencil" /></Button>
+              <Button Classes="icon lg primary" ToolTip.Tip="Add"><l:Icon Kind="Plus" Size="18" /></Button>
+              <Button Classes="icon ghost" ToolTip.Tip="Settings"><l:Icon Kind="Settings" /></Button>
+              <Button Classes="icon outline pill" ToolTip.Tip="Favourite"><l:Icon Kind="Heart" /></Button>
+              <Button Classes="icon danger-soft" ToolTip.Tip="Delete"><l:Icon Kind="Trash" /></Button>
+            </WrapPanel>
+            <Button Classes="primary block" Content="Block button (stretches to fill)" />
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="With icons" Description="Put any content inside — icons inherit the button foreground." />
+        <l:Card>
+          <WrapPanel Classes="row">
+            <Button Classes="primary">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <l:Icon Kind="Plus" />
+                <TextBlock Text="New project" />
+              </StackPanel>
+            </Button>
+            <Button>
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <l:Icon Kind="Download" />
+                <TextBlock Text="Export" />
+              </StackPanel>
+            </Button>
+            <Button Classes="outline">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <l:Icon Kind="Filter" />
+                <TextBlock Text="Filter" />
+                <l:Badge Classes="accent" Content="3" Padding="6,0,6,1" />
+              </StackPanel>
+            </Button>
+            <Button Classes="ghost">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <l:Icon Kind="RefreshCw" />
+                <TextBlock Text="Refresh" />
+              </StackPanel>
+            </Button>
+            <Button Classes="danger">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <l:Icon Kind="Trash" />
+                <TextBlock Text="Delete" />
+              </StackPanel>
+            </Button>
+          </WrapPanel>
+        </l:Card>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="Toggle buttons" />
+          <l:Card>
+            <WrapPanel Classes="row">
+              <ToggleButton Content="Bold" IsChecked="True" />
+              <ToggleButton Content="Italic" />
+              <ToggleButton Classes="ghost icon" IsChecked="True"><l:Icon Kind="Star" /></ToggleButton>
+              <ToggleButton Classes="ghost icon"><l:Icon Kind="Bookmark" /></ToggleButton>
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Classes="section">
+          <l:SectionHeader Title="Disabled" />
+          <l:Card>
+            <WrapPanel Classes="row">
+              <Button Classes="primary" Content="Primary" IsEnabled="False" />
+              <Button Content="Default" IsEnabled="False" />
+              <Button Classes="ghost" Content="Ghost" IsEnabled="False" />
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+      </Grid>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Segmented control" Description="Single choice between a few options. Add Classes=&quot;block&quot; to stretch evenly." />
+        <l:Card>
+          <StackPanel Spacing="16">
+            <l:SegmentedControl SelectedIndex="0">
+              <l:SegmentedItem Content="Daily" />
+              <l:SegmentedItem Content="Weekly" />
+              <l:SegmentedItem Content="Monthly" />
+              <l:SegmentedItem Content="Yearly" />
+            </l:SegmentedControl>
+            <l:SegmentedControl Classes="block" SelectedIndex="1" MaxWidth="420" HorizontalAlignment="Left">
+              <l:SegmentedItem>
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <l:Icon Kind="Grid" Size="14" />
+                  <TextBlock Text="Grid" />
+                </StackPanel>
+              </l:SegmentedItem>
+              <l:SegmentedItem>
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <l:Icon Kind="Menu" Size="14" />
+                  <TextBlock Text="List" />
+                </StackPanel>
+              </l:SegmentedItem>
+              <l:SegmentedItem>
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                  <l:Icon Kind="Calendar" Size="14" />
+                  <TextBlock Text="Calendar" />
+                </StackPanel>
+              </l:SegmentedItem>
+            </l:SegmentedControl>
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

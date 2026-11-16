@@ -1,0 +1,109 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.InputsPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <Grid ColumnDefinitions="3*,2*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="Form fields" Description="FormField = label + input + hint / error." />
+          <l:Card Header="Create account" Description="Validation runs as you type.">
+            <StackPanel Spacing="16" Margin="0,8,0,0">
+              <Grid ColumnDefinitions="*,16,*">
+                <l:FormField Label="First name" IsRequired="True">
+                  <TextBox PlaceholderText="Ada" />
+                </l:FormField>
+                <l:FormField Grid.Column="2" Label="Last name">
+                  <TextBox PlaceholderText="Lovelace" />
+                </l:FormField>
+              </Grid>
+              <l:FormField x:Name="EmailField" Label="Email" IsRequired="True" Hint="We will never share your email.">
+                <TextBox x:Name="EmailBox" PlaceholderText="you@example.com" TextChanged="OnEmailChanged" />
+              </l:FormField>
+              <l:FormField Label="Password" Hint="At least 8 characters.">
+                <TextBox PasswordChar="•" PlaceholderText="••••••••" />
+              </l:FormField>
+              <Grid ColumnDefinitions="*,16,*">
+                <l:FormField Label="Role">
+                  <ComboBox SelectedIndex="0" HorizontalAlignment="Stretch">
+                    <ComboBoxItem Content="Developer" />
+                    <ComboBoxItem Content="Designer" />
+                    <ComboBoxItem Content="Product manager" />
+                  </ComboBox>
+                </l:FormField>
+                <l:FormField Grid.Column="2" Label="Team size">
+                  <NumericUpDown Value="5" Minimum="1" Maximum="500" HorizontalAlignment="Stretch" />
+                </l:FormField>
+              </Grid>
+              <l:FormField Label="Bio">
+                <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="88" PlaceholderText="Tell us a little about yourself" />
+              </l:FormField>
+              <CheckBox Content="I agree to the terms and privacy policy" IsChecked="True" />
+            </StackPanel>
+            <l:Card.Footer>
+              <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+                <Button Classes="ghost" Content="Cancel" />
+                <Button Classes="primary" Content="Create account" />
+              </StackPanel>
+            </l:Card.Footer>
+          </l:Card>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Spacing="28">
+          <StackPanel Classes="section">
+            <l:SectionHeader Title="Text inputs" />
+            <l:Card>
+              <StackPanel Spacing="12">
+                <l:SearchBox PlaceholderText="Search with Esc to clear" />
+                <TextBox PlaceholderText="Default (outline)" />
+                <TextBox Classes="filled" PlaceholderText="Filled variant" />
+                <TextBox PlaceholderText="Disabled" IsEnabled="False" />
+              </StackPanel>
+            </l:Card>
+          </StackPanel>
+
+          <StackPanel Classes="section">
+            <l:SectionHeader Title="Choices" />
+            <l:Card>
+              <StackPanel Spacing="14">
+                <StackPanel Spacing="6">
+                  <CheckBox Content="Email notifications" IsChecked="True" />
+                  <CheckBox Content="Push notifications" />
+                  <CheckBox Content="Partially selected" IsThreeState="True" IsChecked="{x:Null}" />
+                </StackPanel>
+                <Separator Margin="0" />
+                <StackPanel Spacing="6">
+                  <RadioButton GroupName="plan" Content="Free" />
+                  <RadioButton GroupName="plan" Content="Pro" IsChecked="True" />
+                  <RadioButton GroupName="plan" Content="Enterprise" />
+                </StackPanel>
+                <Separator Margin="0" />
+                <ToggleSwitch Content="Dark sidebar" IsChecked="True" OnContent="" OffContent="" />
+                <ToggleSwitch Content="Auto update" OnContent="" OffContent="" />
+              </StackPanel>
+            </l:Card>
+          </StackPanel>
+
+          <StackPanel Classes="section">
+            <l:SectionHeader Title="Ranges" />
+            <l:Card>
+              <StackPanel Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                  <TextBlock Classes="medium" Text="Volume" />
+                  <TextBlock Grid.Column="1" Classes="secondary mono" Text="{Binding #VolumeSlider.Value, StringFormat={}{0:0}%}" />
+                </Grid>
+                <Slider x:Name="VolumeSlider" Minimum="0" Maximum="100" Value="64" />
+                <Grid ColumnDefinitions="*,Auto" Margin="0,8,0,0">
+                  <TextBlock Classes="medium" Text="Storage" />
+                  <TextBlock Grid.Column="1" Classes="secondary mono" Text="7.4 / 10 GB" />
+                </Grid>
+                <ProgressBar Value="74" />
+              </StackPanel>
+            </l:Card>
+          </StackPanel>
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

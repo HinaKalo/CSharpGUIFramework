@@ -1,0 +1,116 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.OverviewPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <!-- Hero -->
+      <Border CornerRadius="16"
+              Padding="36,32"
+              Background="{DynamicResource Lumen.Brush.Surface}"
+              BorderBrush="{DynamicResource Lumen.Brush.Border}"
+              BorderThickness="1"
+              BoxShadow="{DynamicResource Lumen.Shadow.Sm}">
+        <Grid ColumnDefinitions="*,Auto">
+          <StackPanel Spacing="14" MaxWidth="620" HorizontalAlignment="Left">
+            <l:Badge Classes="accent dot" Content="Lumen UI 0.1 — Avalonia 12" />
+            <TextBlock Classes="display" TextWrapping="Wrap" Text="Build polished desktop apps, fast." />
+            <TextBlock Classes="body secondary" TextWrapping="Wrap" FontSize="15" LineHeight="23"
+                       Text="A token-driven component layer on top of Avalonia's Fluent theme: light and dark modes, runtime accent colors, an app shell with navigation, dialogs and toasts — ready to drop into any new project." />
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,8,0,0">
+              <Button Classes="primary lg" Click="OnGetStarted">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="Browse components" />
+                  <l:Icon Kind="ArrowRight" Size="16" />
+                </StackPanel>
+              </Button>
+              <Button Classes="lg" Click="OnToast">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <l:Icon Kind="Zap" Size="16" />
+                  <TextBlock Text="Try a toast" />
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <!-- Stats -->
+      <UniformGrid Columns="4" Margin="-8,0">
+        <l:StatCard Margin="8" Label="Components" Value="24" Delta="+8" Trend="Up" Caption="this release" Icon="Package" />
+        <l:StatCard Margin="8" Label="Theme modes" Value="2 + system" Caption="light · dark" Icon="Moon" />
+        <l:StatCard Margin="8" Label="Accent presets" Value="9" Delta="runtime" Trend="Up" Caption="any color works" Icon="Droplet" />
+        <l:StatCard Margin="8" Label="Boilerplate" Value="0 lines" Delta="-100%" Trend="Down" Caption="with the template" Icon="Zap" />
+      </UniformGrid>
+
+      <!-- Two columns -->
+      <Grid ColumnDefinitions="3*,2*">
+        <l:Card Margin="0,0,16,0" Header="Recent activity" Description="What changed across your workspace">
+          <l:Card.Actions>
+            <Button Classes="ghost sm">
+              <StackPanel Orientation="Horizontal" Spacing="6">
+                <TextBlock Text="View all" />
+                <l:Icon Kind="ChevronRight" Size="14" />
+              </StackPanel>
+            </Button>
+          </l:Card.Actions>
+          <StackPanel Spacing="16" Margin="0,8,0,0">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+              <l:Avatar DisplayName="Ada Lovelace" Size="36" />
+              <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                <TextBlock Classes="medium" Text="Ada Lovelace merged #128" />
+                <TextBlock Classes="caption tertiary" Text="feat(shell): collapsible sidebar · 2 min ago" />
+              </StackPanel>
+              <l:Badge Grid.Column="2" Classes="success dot" Content="Merged" />
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*,Auto">
+              <l:Avatar DisplayName="Linus Torvalds" Size="36" />
+              <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                <TextBlock Classes="medium" Text="Linus opened a review" />
+                <TextBlock Classes="caption tertiary" Text="Tokens: tweak dark surfaces · 18 min ago" />
+              </StackPanel>
+              <l:Badge Grid.Column="2" Classes="warning dot" Content="In review" />
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*,Auto">
+              <l:Avatar DisplayName="Grace Hopper" Size="36" />
+              <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                <TextBlock Classes="medium" Text="Grace published v0.1.0" />
+                <TextBlock Classes="caption tertiary" Text="Release notes and template · 1 h ago" />
+              </StackPanel>
+              <l:Badge Grid.Column="2" Classes="accent dot" Content="Release" />
+            </Grid>
+            <Grid ColumnDefinitions="Auto,*,Auto">
+              <l:Avatar DisplayName="Alan Turing" Size="36" />
+              <StackPanel Grid.Column="1" Margin="12,0" VerticalAlignment="Center">
+                <TextBlock Classes="medium" Text="Alan reported a bug" />
+                <TextBlock Classes="caption tertiary" Text="Toast overlaps on small windows · 3 h ago" />
+              </StackPanel>
+              <l:Badge Grid.Column="2" Classes="danger dot" Content="Bug" />
+            </Grid>
+          </StackPanel>
+        </l:Card>
+
+        <StackPanel Grid.Column="1" Spacing="16">
+          <l:Card Header="Quick start" Description="Three steps to a new app">
+            <StackPanel Spacing="12" Margin="0,8,0,0">
+              <Grid ColumnDefinitions="Auto,*">
+                <l:Badge Classes="solid accent" Content="1" />
+                <TextBlock Grid.Column="1" Margin="10,0,0,0" Classes="mono" Text="dotnet new install ./templates/Lumen.App" TextWrapping="Wrap" />
+              </Grid>
+              <Grid ColumnDefinitions="Auto,*">
+                <l:Badge Classes="solid accent" Content="2" />
+                <TextBlock Grid.Column="1" Margin="10,0,0,0" Classes="mono" Text="dotnet new lumen-app -n MyTool" TextWrapping="Wrap" />
+              </Grid>
+              <Grid ColumnDefinitions="Auto,*">
+                <l:Badge Classes="solid accent" Content="3" />
+                <TextBlock Grid.Column="1" Margin="10,0,0,0" Classes="mono" Text="dotnet run --project MyTool" TextWrapping="Wrap" />
+              </Grid>
+            </StackPanel>
+          </l:Card>
+          <l:InfoBar Severity="Success" Title="Everything is themed" Message="Switch theme or accent from the top bar — every page updates live." />
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

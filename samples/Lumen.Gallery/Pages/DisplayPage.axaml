@@ -1,0 +1,145 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.DisplayPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Badges" Description="Classes: accent, success, warning, danger, info · modifiers: solid, outline, dot, lg, square" />
+        <l:Card>
+          <StackPanel Spacing="12">
+            <WrapPanel Classes="row">
+              <l:Badge Content="Neutral" />
+              <l:Badge Classes="accent" Content="Accent" />
+              <l:Badge Classes="success" Content="Success" />
+              <l:Badge Classes="warning" Content="Warning" />
+              <l:Badge Classes="danger" Content="Danger" />
+              <l:Badge Classes="info" Content="Info" />
+              <l:Badge Classes="outline" Content="Outline" />
+            </WrapPanel>
+            <WrapPanel Classes="row">
+              <l:Badge Classes="solid" Content="Solid" />
+              <l:Badge Classes="solid accent" Content="Accent" />
+              <l:Badge Classes="solid success" Content="Live" />
+              <l:Badge Classes="solid warning" Content="Beta" />
+              <l:Badge Classes="solid danger" Content="99+" />
+              <l:Badge Classes="solid info" Content="New" />
+            </WrapPanel>
+            <WrapPanel Classes="row">
+              <l:Badge Classes="success dot" Content="Online" />
+              <l:Badge Classes="warning dot" Content="Degraded" />
+              <l:Badge Classes="danger dot" Content="Outage" />
+              <l:Badge Classes="accent dot lg" Content="Large with dot" />
+              <l:Badge Classes="info square" Content="square" />
+            </WrapPanel>
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Avatars" Description="Initials with a deterministic tint, optional presence status, or an image." />
+        <l:Card>
+          <StackPanel Spacing="16">
+            <WrapPanel Classes="row">
+              <l:Avatar DisplayName="Ada Lovelace" Size="24" />
+              <l:Avatar DisplayName="Grace Hopper" Size="32" />
+              <l:Avatar DisplayName="Alan Turing" Size="40" Status="Online" />
+              <l:Avatar DisplayName="Linus Torvalds" Size="48" Status="Away" />
+              <l:Avatar DisplayName="Margaret Hamilton" Size="56" Status="Busy" />
+              <l:Avatar DisplayName="Dennis Ritchie" Size="56" Classes="square" Status="Offline" />
+              <l:Avatar DisplayName="张三" Size="40" />
+            </WrapPanel>
+            <StackPanel Orientation="Horizontal" Spacing="-10">
+              <l:Avatar Classes="ring" DisplayName="Ken Thompson" Size="36" />
+              <l:Avatar Classes="ring" DisplayName="Barbara Liskov" Size="36" />
+              <l:Avatar Classes="ring" DisplayName="Edsger Dijkstra" Size="36" />
+              <l:Avatar Classes="ring" DisplayName="Donald Knuth" Size="36" />
+              <Border Width="36" Height="36" CornerRadius="18"
+                      Background="{DynamicResource Lumen.Brush.SurfaceHover}"
+                      BorderBrush="{DynamicResource Lumen.Brush.Surface}" BorderThickness="2">
+                <TextBlock Classes="caption strong secondary" Text="+12" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+            </StackPanel>
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Stat cards" />
+        <UniformGrid Columns="3" Margin="-8,0">
+          <l:StatCard Margin="8" Label="Revenue" Value="$48,210" Delta="12.4%" Trend="Up" Caption="vs last month" Icon="CreditCard" />
+          <l:StatCard Margin="8" Label="Active users" Value="3,284" Delta="4.1%" Trend="Down" Caption="vs last week" Icon="Users" />
+          <l:StatCard Margin="8" Label="Avg. response" Value="182 ms" Delta="0.0%" Caption="steady" Icon="Activity" />
+        </UniformGrid>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Cards" Description="Header, description, actions and footer slots · classes interactive / flat / subtle / compact" />
+        <UniformGrid Columns="3" Margin="-8,0">
+          <l:Card Margin="8" Classes="interactive" Header="Interactive" Description="Hover me — I lift.">
+            <TextBlock Classes="secondary" TextWrapping="Wrap" Text="Use for clickable tiles such as projects or templates." />
+          </l:Card>
+          <l:Card Margin="8" Header="With footer" Description="Actions live at the bottom.">
+            <TextBlock Classes="secondary" TextWrapping="Wrap" Text="The footer gets a hairline divider automatically." />
+            <l:Card.Footer>
+              <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+                <Button Classes="ghost sm" Content="Dismiss" />
+                <Button Classes="primary sm" Content="Open" />
+              </StackPanel>
+            </l:Card.Footer>
+          </l:Card>
+          <l:Card Margin="8" Classes="subtle" Header="Subtle" Description="Tinted, no border or shadow.">
+            <TextBlock Classes="secondary" TextWrapping="Wrap" Text="Good for nesting inside other cards." />
+          </l:Card>
+        </UniformGrid>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="Loading" Description="Skeleton placeholders and spinner." />
+          <l:Card>
+            <StackPanel Spacing="18">
+              <Grid ColumnDefinitions="Auto,*">
+                <l:Skeleton Classes="circle" Width="44" Height="44" />
+                <StackPanel Grid.Column="1" Margin="12,0,0,0" Spacing="8" VerticalAlignment="Center">
+                  <l:Skeleton Classes="text" Width="160" />
+                  <l:Skeleton Classes="text" Width="240" />
+                </StackPanel>
+              </Grid>
+              <l:Skeleton Height="72" CornerRadius="10" />
+              <StackPanel Orientation="Horizontal" Spacing="18">
+                <l:Spinner Size="16" />
+                <l:Spinner />
+                <l:Spinner Size="28" Thickness="3" />
+                <Button Classes="primary" IsEnabled="False">
+                  <StackPanel Orientation="Horizontal" Spacing="8">
+                    <l:Spinner Size="14" Thickness="2" Foreground="White" />
+                    <TextBlock Text="Saving…" />
+                  </StackPanel>
+                </Button>
+              </StackPanel>
+            </StackPanel>
+          </l:Card>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Classes="section">
+          <l:SectionHeader Title="Empty state" />
+          <l:Card>
+            <l:EmptyState Icon="Inbox"
+                          Title="No messages yet"
+                          Description="When teammates mention you, their messages will show up here.">
+              <l:EmptyState.Action>
+                <Button Classes="primary sm">
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <l:Icon Kind="Plus" Size="14" />
+                    <TextBlock Text="Start a conversation" />
+                  </StackPanel>
+                </Button>
+              </l:EmptyState.Action>
+            </l:EmptyState>
+          </l:Card>
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

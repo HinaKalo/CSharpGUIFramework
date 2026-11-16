@@ -1,0 +1,109 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.FoundationsPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Color tokens"
+                         Description="Semantic brushes — reference them with {DynamicResource Lumen.Brush.*} and they follow light / dark and the accent automatically." />
+        <l:Card>
+          <StackPanel Spacing="18">
+            <StackPanel Spacing="8">
+              <TextBlock Classes="overline" Text="SURFACES &amp; TEXT" />
+              <WrapPanel x:Name="NeutralSwatches" />
+            </StackPanel>
+            <StackPanel Spacing="8">
+              <TextBlock Classes="overline" Text="ACCENT &amp; STATUS" />
+              <WrapPanel x:Name="StatusSwatches" />
+            </StackPanel>
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <StackPanel Classes="section">
+        <l:SectionHeader Title="Typography" Description="Inter with a compact scale. Apply with Classes on TextBlock." />
+        <l:Card>
+          <StackPanel Spacing="14">
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="display · 36" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="display" Text="The quick brown fox" />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="headline · 28" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="headline" Text="The quick brown fox" />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="title · 20" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="title" Text="The quick brown fox jumps over the lazy dog" />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="subtitle · 16" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="subtitle" Text="The quick brown fox jumps over the lazy dog" />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="body · 14" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="body" Text="The quick brown fox jumps over the lazy dog. Body text for paragraphs and controls." />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="caption · 12" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="caption secondary" Text="Captions, hints and metadata" />
+            </Grid>
+            <Grid ColumnDefinitions="120,*">
+              <TextBlock Classes="caption tertiary mono" Text="overline · 11" VerticalAlignment="Center" />
+              <TextBlock Grid.Column="1" Classes="overline" Text="SECTION LABEL" />
+            </Grid>
+            <Separator />
+            <WrapPanel Classes="row">
+              <TextBlock Classes="primary" Text="primary" />
+              <TextBlock Classes="secondary" Text="secondary" />
+              <TextBlock Classes="tertiary" Text="tertiary" />
+              <TextBlock Classes="accent" Text="accent" />
+              <TextBlock Classes="success" Text="success" />
+              <TextBlock Classes="warning" Text="warning" />
+              <TextBlock Classes="danger" Text="danger" />
+              <TextBlock Classes="strong" Text="strong" />
+              <TextBlock Classes="mono" Text="mono 0123" />
+            </WrapPanel>
+          </StackPanel>
+        </l:Card>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,*">
+        <StackPanel Classes="section" Margin="0,0,16,0">
+          <l:SectionHeader Title="Radius" Description="Lumen.Radius.Xs → Full" />
+          <l:Card>
+            <WrapPanel Classes="row">
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Xs}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Sm}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Md}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Lg}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Xl}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+              <Border Width="56" Height="56" CornerRadius="{DynamicResource Lumen.Radius.Full}" Background="{DynamicResource Lumen.Brush.AccentSubtle}" BorderBrush="{DynamicResource Lumen.Brush.Accent}" BorderThickness="1" />
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Classes="section">
+          <l:SectionHeader Title="Elevation" Description="Lumen.Shadow.Xs → Lg" />
+          <l:Card Classes="subtle">
+            <WrapPanel>
+              <Border Width="64" Height="56" Margin="0,0,16,8" CornerRadius="10" Background="{DynamicResource Lumen.Brush.Surface}" BoxShadow="{DynamicResource Lumen.Shadow.Xs}">
+                <TextBlock Classes="caption tertiary" Text="Xs" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+              <Border Width="64" Height="56" Margin="0,0,16,8" CornerRadius="10" Background="{DynamicResource Lumen.Brush.Surface}" BoxShadow="{DynamicResource Lumen.Shadow.Sm}">
+                <TextBlock Classes="caption tertiary" Text="Sm" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+              <Border Width="64" Height="56" Margin="0,0,16,8" CornerRadius="10" Background="{DynamicResource Lumen.Brush.Surface}" BoxShadow="{DynamicResource Lumen.Shadow.Md}">
+                <TextBlock Classes="caption tertiary" Text="Md" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+              <Border Width="64" Height="56" Margin="0,0,16,8" CornerRadius="10" Background="{DynamicResource Lumen.Brush.Surface}" BoxShadow="{DynamicResource Lumen.Shadow.Lg}">
+                <TextBlock Classes="caption tertiary" Text="Lg" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </Border>
+            </WrapPanel>
+          </l:Card>
+        </StackPanel>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

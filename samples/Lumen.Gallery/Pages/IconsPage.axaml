@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             x:Class="Lumen.Gallery.Pages.IconsPage">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+      <l:SectionHeader Title="Icons"
+                       Description="&lt;l:Icon Kind=&quot;Search&quot; Size=&quot;16&quot; /&gt; — stroke icons on a 24px grid; color follows Foreground. Register more with LumenIcons.Register(name, pathData)." />
+      <l:Card>
+        <WrapPanel x:Name="IconGrid" />
+      </l:Card>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
