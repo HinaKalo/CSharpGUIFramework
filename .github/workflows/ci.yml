@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      LUMEN_SNAPSHOT_DIR: ${{ github.workspace }}/artifacts/snapshots
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore CSharpGUIFramework.slnx
+
+      - name: Build
+        run: dotnet build CSharpGUIFramework.slnx -c Release --no-restore
+
+      - name: Test (headless, renders snapshots)
+        run: dotnet test CSharpGUIFramework.slnx -c Release --no-build
+
+      - name: Template smoke test
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          dotnet new install ./templates/Lumen.App
+          dotnet new lumen-app -n SmokeApp -o artifacts/SmokeApp --LumenPath "$GITHUB_WORKSPACE/src/Lumen.UI/Lumen.UI.csproj"
+          dotnet build artifacts/SmokeApp -c Release
+
+      - name: Upload snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshots-${{ matrix.os }}
+          path: artifacts/snapshots
+          if-no-files-found: ignore
