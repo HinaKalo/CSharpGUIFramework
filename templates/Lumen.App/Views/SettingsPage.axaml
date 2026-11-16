@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="https://github.com/HinaKalo/lumen"
+             xmlns:vm="using:Lumen.App.ViewModels"
+             x:Class="Lumen.App.Views.SettingsPage"
+             x:DataType="vm:SettingsPageViewModel"
+             x:Name="Root">
+  <ScrollViewer>
+    <StackPanel Classes="page">
+      <l:SectionHeader Title="Settings" Description="Appearance preferences apply instantly." />
+
+      <l:Card Header="Appearance">
+        <StackPanel Spacing="20" Margin="0,8,0,0">
+          <l:FormField Label="Theme">
+            <l:SegmentedControl SelectedIndex="{Binding ThemeIndex}" HorizontalAlignment="Left">
+              <l:SegmentedItem Content="System" />
+              <l:SegmentedItem Content="Light" />
+              <l:SegmentedItem Content="Dark" />
+            </l:SegmentedControl>
+          </l:FormField>
+
+          <l:FormField Label="Accent color">
+            <ItemsControl ItemsSource="{Binding Accents}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <WrapPanel />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="l:AccentPreset">
+                  <Button Classes="ghost icon"
+                          Margin="0,0,6,6"
+                          ToolTip.Tip="{Binding Name}"
+                          Command="{Binding #Root.((vm:SettingsPageViewModel)DataContext).SetAccentCommand}"
+                          CommandParameter="{Binding}">
+                    <Ellipse Width="20" Height="20">
+                      <Ellipse.Fill>
+                        <SolidColorBrush Color="{Binding Color}" />
+                      </Ellipse.Fill>
+                    </Ellipse>
+                  </Button>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </l:FormField>
+        </StackPanel>
+      </l:Card>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

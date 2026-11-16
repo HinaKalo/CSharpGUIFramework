@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "HinaKalo",
+  "classifications": [ "Desktop", "Avalonia", "Lumen", "MVVM" ],
+  "identity": "Lumen.App.Template",
+  "name": "Lumen UI Avalonia App",
+  "description": "Avalonia 12 desktop app pre-wired with Lumen.UI: AppShell navigation, light/dark theme, MVVM (CommunityToolkit), toasts and dialogs.",
+  "shortName": "lumen-app",
+  "sourceName": "Lumen.App",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "symbols": {
+    "LumenPath": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "../CSharpGUIFramework/src/Lumen.UI/Lumen.UI.csproj",
+      "replaces": "LUMEN_UI_PROJECT_PATH",
+      "description": "Path to Lumen.UI.csproj (relative to the new project folder, or absolute)."
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ "**/bin/**", "**/obj/**", ".template.config/**" ]
+        }
+      ]
+    }
+  ]
+}

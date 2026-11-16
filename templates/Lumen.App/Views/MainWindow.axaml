@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="https://github.com/HinaKalo/lumen"
+        xmlns:vm="using:Lumen.App.ViewModels"
+        mc:Ignorable="d"
+        x:Class="Lumen.App.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Lumen.App"
+        Width="1200" Height="780"
+        MinWidth="860" MinHeight="560"
+        WindowStartupLocation="CenterScreen">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+
+  <l:AppShell Title="Lumen.App"
+              Subtitle="v0.1.0"
+              NavItems="{Binding NavItems}">
+    <l:AppShell.HeaderActions>
+      <StackPanel Orientation="Horizontal" Spacing="6">
+        <l:SearchBox Width="220" />
+        <l:ThemeToggleButton />
+      </StackPanel>
+    </l:AppShell.HeaderActions>
+  </l:AppShell>
+</Window>
