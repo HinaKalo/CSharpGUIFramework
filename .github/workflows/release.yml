@@ -83,7 +83,14 @@ jobs:
         env:
           NUGET_API_KEY: ${{ steps.nuget.outputs.NUGET_API_KEY }}
         run: |
-          dotnet nuget push "artifacts/packages/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+          # Explicit paths: the CLI's own wildcard expansion fails for forward-slash paths on Windows.
+          # Matching .snupkg symbol packages are pushed automatically alongside each .nupkg.
+          $packages = Get-ChildItem artifacts/packages -Filter *.nupkg
+          if (-not $packages) { throw 'No .nupkg files found in artifacts/packages.' }
+          foreach ($p in $packages) {
+            dotnet nuget push $p.FullName --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            if ($LASTEXITCODE -ne 0) { throw "Push failed: $($p.Name)" }
+          }
 
       - name: GitHub Release
         shell: pwsh
