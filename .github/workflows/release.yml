@@ -1,0 +1,77 @@
+name: Release
+
+# Push a tag like v0.1.0 to publish Lumen.UI + Lumen.Templates to nuget.org
+# and create a GitHub Release with the packages attached.
+# Requires the repository secret NUGET_API_KEY (nuget.org API key with push rights).
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Version from tag
+        id: ver
+        shell: pwsh
+        run: |
+          $v = '${{ github.ref_name }}'.TrimStart('v')
+          if ($v -notmatch '^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$') { throw "Tag '${{ github.ref_name }}' is not v<semver>." }
+          "version=$v" >> $env:GITHUB_OUTPUT
+
+      - name: Build and test
+        run: |
+          dotnet build CSharpGUIFramework.slnx -c Release -p:Version=${{ steps.ver.outputs.version }}
+          dotnet test CSharpGUIFramework.slnx -c Release --no-build
+
+      - name: Point the template at this version
+        shell: pwsh
+        run: |
+          $path = 'templates/Lumen.App/.template.config/template.json'
+          $text = Get-Content $path -Raw
+          $new = [regex]::Replace($text, '("LumenVersion"\s*:\s*\{[^}]*?"defaultValue"\s*:\s*")[^"]*', '${1}${{ steps.ver.outputs.version }}')
+          if ($new -eq $text -and $text -notmatch '"defaultValue"\s*:\s*"${{ steps.ver.outputs.version }}"') { throw 'LumenVersion defaultValue not found in template.json' }
+          Set-Content $path $new -Encoding utf8NoBOM -NoNewline
+
+      - name: Pack
+        run: |
+          dotnet pack src/Lumen.UI -c Release -p:Version=${{ steps.ver.outputs.version }} -o artifacts/packages
+          dotnet pack templates/Lumen.Templates.csproj -c Release -p:Version=${{ steps.ver.outputs.version }} -o artifacts/packages
+
+      - name: Smoke test packages before publishing
+        shell: pwsh
+        run: |
+          $feed = Resolve-Path artifacts/packages
+          dotnet new install "$feed/Lumen.Templates.${{ steps.ver.outputs.version }}.nupkg"
+          dotnet new lumen-app -n ReleaseSmoke -o "$env:RUNNER_TEMP/ReleaseSmoke"
+          dotnet build "$env:RUNNER_TEMP/ReleaseSmoke/ReleaseSmoke.slnx" -c Release -warnaserror -p:RestoreAdditionalProjectSources=$feed
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+      - name: Push to nuget.org
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if (-not $env:NUGET_API_KEY) { throw 'Repository secret NUGET_API_KEY is not set.' }
+          dotnet nuget push "artifacts/packages/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: GitHub Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create '${{ github.ref_name }}' (Get-ChildItem artifacts/packages/*) --title 'Lumen.UI ${{ steps.ver.outputs.version }}' --generate-notes

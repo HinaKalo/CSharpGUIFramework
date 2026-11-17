@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Packs templates/Lumen.App as a dotnet new template package:
+      dotnet pack templates/Lumen.Templates.csproj -o artifacts/packages
+      dotnet new install Lumen.Templates          (from nuget.org)
+  -->
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageId>Lumen.Templates</PackageId>
+    <Title>Lumen UI templates</Title>
+    <Description>dotnet new templates for Avalonia 12 apps built with Lumen.UI: lumen-app (AppShell, MVVM, light/dark theme, trimmed / Native AOT publish profiles).</Description>
+    <PackageTags>avalonia;template;dotnet-new;lumen;mvvm;desktop</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <TargetFramework>net10.0</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <!-- Keep dot-files such as .template.config and .gitignore. -->
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoWarn>$(NoWarn);NU5128;NU5110;NU5111</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Lumen.App\**\*"
+             Exclude="Lumen.App\**\bin\**;Lumen.App\**\obj\**;Lumen.App\**\artifacts\**;Lumen.App\**\.vs\**" />
+    <None Include="..\src\Lumen.UI\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

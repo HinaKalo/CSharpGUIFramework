@@ -11,6 +11,16 @@
     <Copyright>Copyright (c) HinaKalo</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/HinaKalo/CSharpGUIFramework</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/HinaKalo/CSharpGUIFramework</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <!-- Release builds override this with -p:Version=<tag>. -->
     <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <!-- Deterministic paths (Source Link) when building on GitHub Actions. -->
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 </Project>

@@ -17,29 +17,64 @@
 
 ## 快速开始
 
-### 方式一：用模板新建项目（推荐）
+### 方式一：用模板新建项目（推荐，任何电脑）
 
 ```bash
-# 一次性安装模板（在本仓库根目录执行）
-dotnet new install ./templates/Lumen.App
-
-# 在本仓库的同级目录创建新项目（默认按 ../CSharpGUIFramework/src/Lumen.UI 引用组件库）
-cd ..
+dotnet new install Lumen.Templates      # 从 nuget.org 安装模板（只需一次）
 dotnet new lumen-app -n MyTool
-dotnet run --project MyTool
+dotnet run --project MyTool/src/MyTool  # 首次编译自动从 nuget.org 下载 Lumen.UI
 ```
 
-组件库不在同级目录时，用 `--LumenPath` 指定 `Lumen.UI.csproj` 的路径（相对新项目目录或绝对路径）：
+新项目默认用 NuGet 包引用 `Lumen.UI`，版本写在 `MyTool/Directory.Build.props` 的 `LumenUiVersion` 里，升级只改这一处。模板参数：
+
+| 参数 | 默认 | 说明 |
+| --- | --- | --- |
+| `--LumenSource` | `package` | `package`：引用 nuget.org 上的包；`project`：引用本地源码，适合边改组件库边调试 |
+| `--LumenVersion` | 发布时的版本 | package 模式下的 Lumen.UI 版本 |
+| `--LumenPath` | `../CSharpGUIFramework/src/Lumen.UI/Lumen.UI.csproj` | project 模式下 `Lumen.UI.csproj` 的路径（相对新解决方案目录或绝对路径） |
 
 ```bash
-dotnet new lumen-app -n MyTool --LumenPath "D:/libs/CSharpGUIFramework/src/Lumen.UI/Lumen.UI.csproj"
+# 引用本机源码（组件库仓库和新项目放在同级目录）
+dotnet new lumen-app -n MyTool --LumenSource project
 ```
 
-生成的项目已接好：`LumenTheme`、`AppShell`（侧边导航 + 顶栏 + 页面切换动画）、CommunityToolkit.Mvvm、示例页面（表单、命令、Toast、确认对话框、主题与强调色设置）。
+更新模板：`dotnet new update`。在本仓库里开发模板时，可以改用 `dotnet new install ./templates/Lumen.App` 直接装文件夹版本。
+
+生成的是一个完整的解决方案脚手架：
+
+```
+MyTool/
+  MyTool.slnx
+  Directory.Build.props      公共编译选项 + Lumen.UI 版本（或源码路径）
+  publish.ps1 / publish.sh   一键打包并打印体积
+  README.md
+  src/MyTool/                LumenTheme、AppShell 导航、CommunityToolkit.Mvvm、
+                             Home / Settings 示例页（表单、命令、Toast、确认框、主题与强调色）
+    Properties/PublishProfiles/  FrameworkDependent / SelfContained / NativeAot
+```
+
+### 打包与体积
+
+```powershell
+cd MyTool
+./publish.ps1                 # 默认：裁剪后的自包含单文件
+./publish.ps1 -Mode aot       # Native AOT
+./publish.ps1 -Mode all -Zip  # 三种都打，各生成 zip，并打印体积对比
+```
+
+模板应用在 win-x64 上的实测结果：
+
+| 模式 | 产物 | 体积 | zip | 首个窗口出现 |
+| --- | --- | --- | --- | --- |
+| `fd` 依赖框架 | 1 个 exe（目标机需装 .NET 10） | 29.1 MB | 11.6 MB | ~1.0 s |
+| `trimmed` 自包含 + 裁剪 + 压缩 | 1 个 exe，免安装 | 20.5 MB | 15.4 MB | ~1.2 s |
+| `aot` Native AOT | exe + 3 个 Skia/HarfBuzz/ANGLE 原生库，免安装 | 34.0 MB | 14.6 MB | ~0.3 s |
+
+发布配置会去掉调试符号（SkiaSharp / HarfBuzz 自带约 100 MB 的原生 .pdb）和桌面应用用不到的运行时功能。Lumen.UI 和模板项目都开启了 `IsAotCompatible`，平时编译就会报出不能裁剪的写法；当前 0 警告。Native AOT 需要 VS Build Tools 的“使用 C++ 的桌面开发”，且只能打本机系统的包；脚本会自动把 `vswhere.exe` 所在目录加入 PATH。更多可选的压缩开关见生成项目里的 README。
 
 ### 方式二：接入已有项目
 
-1. 引用 `src/Lumen.UI/Lumen.UI.csproj`（或 `dotnet pack src/Lumen.UI -o ./artifacts` 后引用 NuGet 包）。
+1. `dotnet add package Lumen.UI`（或引用本地源码 `src/Lumen.UI/Lumen.UI.csproj`）。
 2. `Program.cs`：
 
    ```csharp
@@ -172,7 +207,7 @@ src/Lumen.UI/           组件库
   Styles/               排版与内置控件样式微调
   Controls/  Icons/  Services/
 samples/Lumen.Gallery/  组件演示程序
-templates/Lumen.App/    dotnet new 模板（lumen-app）
+templates/Lumen.App/    dotnet new 模板（lumen-app）：解决方案脚手架 + 三种发布配置 + 打包脚本
 tests/Lumen.UI.Tests/   Avalonia.Headless 测试：主题切换、强调色、每个 Gallery 页面亮/暗渲染
 ```
 
@@ -185,6 +220,24 @@ dotnet test
 ```
 
 测试会把每个 Gallery 页面的亮/暗截图写到测试输出目录下的 `snapshots/`（或环境变量 `LUMEN_SNAPSHOT_DIR` 指定的目录），方便肉眼回归检查；CI 会把它们作为构建产物上传。
+
+## 发布新版本
+
+推送 `v` 开头的标签即可：GitHub Actions（[release.yml](.github/workflows/release.yml)）会编译、测试，把 `Lumen.UI` 和 `Lumen.Templates` 打包，先用打出来的包生成一个模板项目验证能编译，然后推送到 nuget.org，并创建带 `.nupkg` 附件的 GitHub Release。模板里的默认 `LumenVersion` 会自动设成标签版本。
+
+```bash
+git tag v0.2.0
+git push origin v0.2.0
+```
+
+需要仓库 Secret `NUGET_API_KEY`（nuget.org 上创建、对 `Lumen.UI` 和 `Lumen.Templates` 有推送权限的 API Key）。nuget.org 上发布后的版本无法删除，只能下架（unlist），所以同一个版本号只能用一次。
+
+本地打包：
+
+```bash
+dotnet pack src/Lumen.UI -c Release -o artifacts/packages
+dotnet pack templates/Lumen.Templates.csproj -c Release -o artifacts/packages
+```
 
 ## License
 

@@ -8,7 +8,18 @@
     <PackageId>Lumen.UI</PackageId>
     <Description>A modern, token-driven component library for Avalonia built on top of FluentTheme.</Description>
     <PackageTags>avalonia;ui;components;theme;design-system</PackageTags>
+    <!-- Enables trim / AOT analyzers; warnings fail the build (TreatWarningsAsErrors). -->
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>true</IsAotCompatible>
+
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" />
