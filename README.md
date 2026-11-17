@@ -230,7 +230,12 @@ git tag v0.2.0
 git push origin v0.2.0
 ```
 
-需要仓库 Secret `NUGET_API_KEY`（nuget.org 上创建、对 `Lumen.UI` 和 `Lumen.Templates` 有推送权限的 API Key）。nuget.org 上发布后的版本无法删除，只能下架（unlist），所以同一个版本号只能用一次。
+发布走 nuget.org 的 Trusted Publishing：GitHub Actions 用 OIDC 身份换取一次性的短期 Key，仓库里不保存任何 API Key。一次性配置：
+
+1. nuget.org → 用户菜单 → Trusted Publishing → Create：Repository Owner `HinaKalo`，Repository `CSharpGUIFramework`，Workflow File `release.yml`，Environment 留空。
+2. 仓库变量 `NUGET_USER` 设为 nuget.org 用户名（不是邮箱）：`gh variable set NUGET_USER --body <用户名>`。
+
+nuget.org 上发布后的版本无法删除，只能下架（unlist），所以同一个版本号只能用一次。
 
 本地打包：
 

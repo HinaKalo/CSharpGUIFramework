@@ -2,14 +2,20 @@ name: Release
 
 # Push a tag like v0.1.0 to publish Lumen.UI + Lumen.Templates to nuget.org
 # and create a GitHub Release with the packages attached.
-# Requires the repository secret NUGET_API_KEY (nuget.org API key with push rights).
+#
+# Uses nuget.org Trusted Publishing (GitHub OIDC -> short-lived API key); no stored API key.
+# One-time setup:
+#   1. nuget.org > Trusted Publishing > Create: owner HinaKalo, repository CSharpGUIFramework,
+#      workflow file release.yml (environment empty).
+#   2. Repository variable NUGET_USER = your nuget.org username (not e-mail).
 
 on:
   push:
     tags: ['v*']
 
 permissions:
-  contents: write
+  contents: write   # create the GitHub Release
+  id-token: write   # OIDC token for nuget.org Trusted Publishing
 
 jobs:
   release:
@@ -61,12 +67,22 @@ jobs:
           dotnet build "$env:RUNNER_TEMP/ReleaseSmoke/ReleaseSmoke.slnx" -c Release -warnaserror -p:RestoreAdditionalProjectSources=$feed
           if ($LASTEXITCODE -ne 0) { exit 1 }
 
+      - name: Check NUGET_USER
+        shell: pwsh
+        run: |
+          if (-not '${{ vars.NUGET_USER }}') { throw 'Repository variable NUGET_USER (nuget.org username) is not set.' }
+
+      - name: nuget.org login (Trusted Publishing)
+        id: nuget
+        uses: NuGet/login@v1
+        with:
+          user: ${{ vars.NUGET_USER }}
+
       - name: Push to nuget.org
         shell: pwsh
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_KEY: ${{ steps.nuget.outputs.NUGET_API_KEY }}
         run: |
-          if (-not $env:NUGET_API_KEY) { throw 'Repository secret NUGET_API_KEY is not set.' }
           dotnet nuget push "artifacts/packages/*.nupkg" --api-key $env:NUGET_API_KEY --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: GitHub Release
