@@ -4,28 +4,55 @@
   "classifications": [ "Desktop", "Avalonia", "Lumen", "MVVM" ],
   "identity": "Lumen.App.Template",
   "name": "Lumen UI Avalonia App",
-  "description": "Avalonia 12 desktop app pre-wired with Lumen.UI: AppShell navigation, light/dark theme, MVVM (CommunityToolkit), toasts and dialogs.",
+  "description": "Avalonia 12 desktop app scaffold pre-wired with Lumen.UI: AppShell navigation, light/dark theme, MVVM (CommunityToolkit), toasts, dialogs, and publish profiles (framework-dependent / trimmed self-contained / Native AOT).",
   "shortName": "lumen-app",
   "sourceName": "Lumen.App",
   "preferNameDirectory": true,
   "tags": {
     "language": "C#",
-    "type": "project"
+    "type": "solution"
   },
   "symbols": {
+    "LumenSource": {
+      "type": "parameter",
+      "datatype": "choice",
+      "defaultValue": "package",
+      "description": "How the app references Lumen.UI.",
+      "choices": [
+        {
+          "choice": "package",
+          "description": "NuGet PackageReference (downloaded from nuget.org on first build)."
+        },
+        {
+          "choice": "project",
+          "description": "ProjectReference to a local Lumen.UI source checkout (see --LumenPath)."
+        }
+      ]
+    },
+    "LumenVersion": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "0.1.0",
+      "replaces": "LUMEN_UI_VERSION",
+      "description": "Lumen.UI package version (package mode)."
+    },
     "LumenPath": {
       "type": "parameter",
       "datatype": "text",
       "defaultValue": "../CSharpGUIFramework/src/Lumen.UI/Lumen.UI.csproj",
       "replaces": "LUMEN_UI_PROJECT_PATH",
-      "description": "Path to Lumen.UI.csproj (relative to the new project folder, or absolute)."
+      "description": "Path to Lumen.UI.csproj, relative to the new solution folder or absolute (project mode)."
+    },
+    "UseProjectReference": {
+      "type": "computed",
+      "value": "(LumenSource == \"project\")"
     }
   },
   "sources": [
     {
       "modifiers": [
         {
-          "exclude": [ "**/bin/**", "**/obj/**", ".template.config/**" ]
+          "exclude": [ "**/bin/**", "**/obj/**", "**/artifacts/**", ".template.config/**" ]
         }
       ]
     }

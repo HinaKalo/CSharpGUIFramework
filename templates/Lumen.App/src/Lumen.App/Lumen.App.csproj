@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Lets the trim / AOT analyzers flag problems during normal builds, not only at publish time. -->
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.6" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+<!--#if (UseProjectReference) -->
+    <ProjectReference Include="$(LumenUiProjectFullPath)" />
+<!--#else -->
+    <PackageReference Include="Lumen.UI" Version="$(LumenUiVersion)" />
+<!--#endif -->
+  </ItemGroup>
+
+  <!-- Publish profiles set DebugType=none; also drop debug symbols that come from packages
+       (SkiaSharp / HarfBuzz ship ~100 MB of native .pdb) and project references.
+       Written without Condition attributes on items: dotnet new evaluates those itself. -->
+  <Target Name="ExcludeSymbolsFromPublish" AfterTargets="ComputeResolvedFilesToPublishList" Condition="'$(DebugType)' == 'none'">
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(ResolvedFileToPublish->WithMetadataValue('Extension', '.pdb'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>

@@ -34,13 +34,23 @@ jobs:
       - name: Test (headless, renders snapshots)
         run: dotnet test CSharpGUIFramework.slnx -c Release --no-build
 
-      - name: Template smoke test
-        if: matrix.os == 'ubuntu-latest'
+      - name: Template scaffold
         shell: bash
         run: |
           dotnet new install ./templates/Lumen.App
-          dotnet new lumen-app -n SmokeApp -o artifacts/SmokeApp --LumenPath "$GITHUB_WORKSPACE/src/Lumen.UI/Lumen.UI.csproj"
-          dotnet build artifacts/SmokeApp -c Release
+          # Source mode: CI tests the library in this commit, not the last published package.
+          dotnet new lumen-app -n SmokeApp -o "$RUNNER_TEMP/SmokeApp" --LumenSource project --LumenPath "$GITHUB_WORKSPACE/src/Lumen.UI/Lumen.UI.csproj"
+          dotnet build "$RUNNER_TEMP/SmokeApp/SmokeApp.slnx" -c Release -warnaserror
+
+      - name: Template publish (trimmed)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: bash "$RUNNER_TEMP/SmokeApp/publish.sh" trimmed
+
+      - name: Template publish (framework-dependent, trimmed, Native AOT)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: '& "$env:RUNNER_TEMP/SmokeApp/publish.ps1" -Mode all'
 
       - name: Upload snapshots
         if: always()

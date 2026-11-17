@@ -104,7 +104,7 @@
               </Grid>
               <Grid ColumnDefinitions="Auto,*">
                 <l:Badge Classes="solid accent" Content="3" />
-                <TextBlock Grid.Column="1" Margin="10,0,0,0" Classes="mono" Text="dotnet run --project MyTool" TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Margin="10,0,0,0" Classes="mono" Text="cd MyTool; ./publish.ps1 -Mode aot" TextWrapping="Wrap" />
               </Grid>
             </StackPanel>
           </l:Card>
